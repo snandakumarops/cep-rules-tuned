@@ -1,2 +1,0 @@
-[condition]Accumulate on Transaction with "{transactionType}"=accumulate ($b:Transaction(transactionType == "{transactionType}", merchantType=="Vertinary Services") over window:time(1m) from entry-point Transactions;$number: count($b),$list: collectList($b);$number > 2)$c2: Transaction() from $list
-[consequence]insert fraud=System.out.println("hello");CEPFraud cepFraud = new CEPFraud();cepFraud.setTransaction($c2);cepFraud.setFraudReason("More than 2 transactions in 1m");insert(cepFraud);
