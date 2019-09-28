@@ -1,0 +1,12 @@
+package com.myspace.ceptest;
+import fraud.analysis.demo.transaction.Transaction;
+import fraud.analysis.demo.transaction.CEPFraud;
+
+declare Transaction @role( event )  @timestamp( timestamp ) end
+
+rule "CC-Transactions last 15 minutes"
+when
+Accumulate on Transaction with "POS"
+then
+insert fraud
+end
