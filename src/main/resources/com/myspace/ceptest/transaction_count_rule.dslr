@@ -1,9 +1,0 @@
-package com.myspace.ceptest;
-
-import fraud.analysis.demo.transaction.Transaction;import fraud.analysis.demo.transaction.CEPFraud;
-when
-Accumulate on Transaction with "POS" and "A0780224080"
-Over time period 1m
-Number of Transactions are greater than 2
-then
-insert fraud with reason "More than 2 transactions in 1m"
