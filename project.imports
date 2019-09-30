@@ -22,15 +22,6 @@
       <import>
         <type>java.util.Collection</type>
       </import>
-      <import>
-        <type>java.util.ArrayList</type>
-      </import>
-      <import>
-        <type>fraud.analysis.demo.transaction</type>
-      </import>
-      <import>
-        <type>fraud.analysis.demo.transaction</type>
-      </import>
     </imports>
   </imports>
   <version>1.0</version>
