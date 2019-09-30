@@ -7,6 +7,7 @@ import fraud.analysis.demo.transaction.CEPFraud;
 rule "testRule"
 	dialect "mvel"
 	when
+		>declare Transaction @role( event )  @timestamp( timestamp ) end
 		Accumulate on Transaction with "POS"
 	then
 		insert fraud
