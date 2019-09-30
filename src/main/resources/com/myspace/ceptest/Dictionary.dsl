@@ -1,4 +1,3 @@
-[condition]Rule for number of transactions over a period of time=import fraud.analysis.demo.transaction.Transaction;import fraud.analysis.demo.transaction.CEPFraud;
-[condition]Transactions in a specific order=declare Transaction @role( event )  @timestamp( timestamp ) end
-[condition]Accumulate on Transaction with "{transactionType}"=accumulate ($b:Transaction(transactionType == "{transactionType}", merchantType=="Vertinary Services") over window:time(1m) from entry-point Transactions;$number: count($b),$list: collectList($b);$number > 2)$c2: Transaction() from $list
+[condition]Accumulate on Transaction with "{transactionType}" and "{merchantType}"=accumulate ($b:Transaction(transactionType == "{transactionType}", merchantType=="{merchantType}") 
+[condition]over {t}m=over window:time(1m) from entry-point Transactions;$number: count($b),$list: collectList($b);$number > 2)$c2: Transaction() from $list
 [consequence]insert fraud=System.out.println("hello");CEPFraud cepFraud = new CEPFraud();cepFraud.setTransaction($c2);cepFraud.setFraudReason("More than 2 transactions in 1m");insert(cepFraud);
