@@ -10,9 +10,10 @@ rule "sdfsf"
 when
 
 
-accumulate ($b:Transaction(transactionType == "ada", merchantType=="adad", transactionId==$c2.transactionId()) over window:time(1m) from entry-point Transactions;
+accumulate ($b:Transaction(transactionType == "ada", merchantType=="adad") over window:time(1m) from entry-point Transactions;
 $number: count($b),$list: collectList($b);$number > 2)
-$c2: Transaction() from $list
+$c1: Transaction() from $list
+$c2: Transaction(this != $c1, this.customerId ==$c1.customerId)
 
 then
 System.out.println("hello");
