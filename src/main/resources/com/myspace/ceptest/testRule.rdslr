@@ -1,6 +1,8 @@
 package com.myspace.ceptest;
 
 import java.lang.Number;
+import fraud.analysis.demo.transaction.Transaction;
+import fraud.analysis.demo.transaction.CEPFraud;
 
 rule "testRule"
 	dialect "mvel"
