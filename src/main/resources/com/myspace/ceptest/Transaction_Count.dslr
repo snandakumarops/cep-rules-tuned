@@ -1,0 +1,4 @@
+import fraud.analysis.demo.transaction.Transaction;
+import fraud.analysis.demo.transaction.CEPFraud;
+
+declare Transaction @role( event )  @timestamp( timestamp ) end
