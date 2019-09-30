@@ -10,7 +10,7 @@ rule "sdfsf"
 when
 
 
-accumulate ($b:Transaction(transactionType == "ada", merchantType=="adad", transactionId=$c2.getTransactionId()) over window:time(1m) from entry-point Transactions;
+accumulate ($b:Transaction(transactionType == "ada", merchantType=="adad", transactionId==$c2.getTransactionId()) over window:time(1m) from entry-point Transactions;
 $number: count($b),$list: collectList($b);$number > 2)
 $c2: Transaction() from $list
 
