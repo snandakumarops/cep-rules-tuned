@@ -1,4 +1,16 @@
+package com.myspace.ceptest;
+
 import fraud.analysis.demo.transaction.Transaction;
 import fraud.analysis.demo.transaction.CEPFraud;
 
 declare Transaction @role( event )  @timestamp( timestamp ) end
+
+rule "More than 2 transactions in 1 m"
+when
+accumulate ($b:Transaction(transactionType == "{transactionType}", merchantType=="{merchantType}") over window:time({t}m) from entry-point Transactions;
+$number: count($b),$list: collectList($b);
+$number > {n})
+$c2: Transaction() from $list
+then
+insert fraud with reason "sfsf"
+end
