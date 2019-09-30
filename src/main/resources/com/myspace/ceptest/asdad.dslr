@@ -2,7 +2,7 @@ package com.myspace.ceptest;
 import fraud.analysis.demo.transaction.CEPFraud;
 import fraud.analysis.demo.transaction.Transaction;
 
-Transactions in a specific order
+declare Transaction @role( event )  @timestamp( timestamp ) end
 
 rule "test rule"
 when
