@@ -16,5 +16,8 @@ $c1: Transaction() from $list
 $c2: Transaction(this != $c1, this.customerId ==$c1.customerId)
 
 then
-System.out.println("hello");
+CEPFraud cepFraud = new CEPFraud();
+cepFraud.setTransaction($c2);
+cepFraud.setFraudReason("More than 2 txns for same customer");
+insert(cepFraud);
 end
