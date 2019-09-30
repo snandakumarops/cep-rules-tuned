@@ -8,8 +8,7 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 rule "More than 2 transactions in 1 m"
 when
 accumulate ($b:Transaction(transactionType == "ada", merchantType=="adad") over window:time(1m) from entry-point Transactions;
-$number: count($b),$list: collectList($b);$number > 2);
-$c2: Transaction() from $list
+$number: count($b),$list: collectList($b);$number > 2)$c2: Transaction() from $list
 then
 insert fraud with reason "sfsf"
 end
