@@ -1,0 +1,9 @@
+package fraud.analysis.demo.transaction;
+
+import java.lang.Number;
+
+rule "CEPRule"
+	dialect "mvel"
+	when
+	then
+end
