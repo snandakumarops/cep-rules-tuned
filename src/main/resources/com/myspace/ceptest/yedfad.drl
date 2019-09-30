@@ -1,2 +1,19 @@
 package com.myspace.ceptest;
 
+
+import fraud.analysis.demo.transaction.Transaction;
+import fraud.analysis.demo.transaction.CEPFraud;
+
+declare Transaction @role( event )  @timestamp( timestamp ) end
+
+rule "sdfsf"
+when
+
+
+accumulate ($b:Transaction(transactionType == "ada", merchantType=="adad") over window:time(1m) from entry-point Transactions;
+$number: count($b),$list: collectList($b);$number > 2)
+$c2: Transaction() from $list
+
+then
+System.out.println("hello");
+end
