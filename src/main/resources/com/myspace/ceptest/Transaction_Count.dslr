@@ -2,6 +2,7 @@ package com.myspace.ceptest;
 
 import fraud.analysis.demo.transaction.Transaction;
 import fraud.analysis.demo.transaction.CEPFraud;
+import java.lang.System;
 
 declare Transaction @role( event )  @timestamp( timestamp ) end
 
