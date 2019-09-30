@@ -1,2 +1,8 @@
 package com.myspace.ceptest;
-
+Rule for Transactions over a time period
+when
+Accumulate on Transaction with "POS" and "A0780224080"
+Over time period 1m
+Number of Transactions are greater than 2
+then
+insert fraud with reason "More than 2 transactions in 1m"
