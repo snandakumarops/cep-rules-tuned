@@ -1,4 +1,4 @@
-[condition]Rule for Transactions over a time period=import fraud.analysis.demo.transaction.Transaction;import fraud.analysis.demo.transaction.CEPFraud;declare Transaction @role( event )  @timestamp( timestamp ) end
+[condition]Rule for Transactions over a time period=declare Transaction @role( event )  @timestamp( timestamp ) end
 [condition]when=when
 [condition]Accumulate on Transaction with "{transactionType}" and "{merchantType}"=accumulate ($b:Transaction(transactionType == "{transactionType}", merchantType=="{merchantType}")  from entry-point Transactions;
 [condition]Over time period {t}m=over window:time({t}m)
