@@ -1,4 +1,8 @@
 package com.myspace.ceptest;
 Rule for number of transactions over a period of time
 
-
+rule "test"
+when
+Accumulate on Transaction with "{transactionType}"
+then
+insert fraud
