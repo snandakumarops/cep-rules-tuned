@@ -1,2 +1,9 @@
 package com.myspace.ceptest;
 
+declare Transaction @role( event )  @timestamp( timestamp ) end
+when
+Accumulate on Transaction with "POS" and "c"
+Over time period 1m
+Number of Transactions are greater than 2
+then
+insert fraud with reason "f"
