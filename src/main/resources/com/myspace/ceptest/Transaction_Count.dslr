@@ -7,7 +7,7 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 
 rule "More than 2 transactions in 1 m"
 when
-accumulate ($b:Transaction(transactionType == "{transactionType}", merchantType=="{merchantType}") over window:time({t}m) from entry-point Transactions;
+accumulate ($b:Transaction(transactionType == "{transactionType}", merchantType=="{merchantType}") over window:time(1m) from entry-point Transactions;
 $number: count($b),$list: collectList($b);
 $number > {n})
 $c2: Transaction() from $list
