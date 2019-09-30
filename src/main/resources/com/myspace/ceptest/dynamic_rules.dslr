@@ -1,9 +1,0 @@
-package com.myspace.ceptest;
-
-
-rule "CC-Transactions last 15 minutes"
-when
-Accumulate on Transaction with "POS"
-then
-insert fraud
-end
