@@ -6,7 +6,7 @@ declare Transaction @role( event )
 end
 
 
-
+when
 Accumulate on Transaction with "POS" and "c"
 Over time period 1m
 Number of Transactions are greater than 2
