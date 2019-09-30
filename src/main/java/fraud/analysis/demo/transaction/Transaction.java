@@ -17,9 +17,8 @@ public class Transaction implements java.io.Serializable {
 	private java.lang.Double amount;
 	private java.lang.String transactionType;
 	private java.lang.String merchantType;
-	private String transactionCountry;
-	private RuleModel ruleModel;
-
+	private java.lang.String transactionCountry;
+	
 
 	public RuleModel getRuleModel() {
 		return ruleModel;
