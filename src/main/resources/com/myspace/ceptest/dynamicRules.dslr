@@ -6,3 +6,4 @@ when
 Accumulate on Transaction with "{transactionType}"
 then
 insert fraud
+end
