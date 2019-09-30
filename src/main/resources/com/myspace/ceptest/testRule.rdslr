@@ -5,5 +5,7 @@ import java.lang.Number;
 rule "testRule"
 	dialect "mvel"
 	when
+		Accumulate on Transaction with "POS"
 	then
+		insert fraud
 end
