@@ -6,14 +6,14 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 
 rule "tet"
 when
-accumulate ($b:Transaction(transactionType == "{transactionType}", merchantType=="{merchantType}") over window:time({t}m) from entry-point Transactions;
-$number: count($b),$list: collectList($b);$number > {n})
+accumulate ($b:Transaction(transactionType == "POS", merchantType=="A433998") over window:time(1m) from entry-point Transactions;
+$number: count($b),$list: collectList($b);$number > 2)
 $c1: Transaction() from $list;
 $c2: Transaction(this != $c1, this.customerId ==$c1.customerId) from $list
 then
 CEPFraud cepFraud = new CEPFraud();
 cepFraud.setTransaction($c2);
-cepFraud.setFraudReason("{fraudReason}");
+cepFraud.setFraudReason("fraud");
 insert(cepFraud);
 end
 
