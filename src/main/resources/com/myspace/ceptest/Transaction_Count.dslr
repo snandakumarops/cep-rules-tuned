@@ -1,7 +1,5 @@
 package com.myspace.ceptest;
 
-import fraud.analysis.demo.transaction.Transaction;
-import fraud.analysis.demo.transaction.CEPFraud;
 
 rule "If number of transactions for a specific merchant type and transaction type is greater than {n} in 1 {m}"
 when
