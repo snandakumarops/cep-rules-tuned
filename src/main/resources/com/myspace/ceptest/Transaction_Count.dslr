@@ -10,3 +10,11 @@ If there are > than 2 Transaction with "POS" and "A797979990" over 1m
 then
 insert fraud with reason "More than 2 transactions for customer with transaction and merchant type"
 end
+
+
+rule "If number of transactions for a specific merchant type and transaction type is greater than {n} in 10 {m}"
+when
+If there are > than 3 Transaction with "POS" and "A67880654" over 10m
+then
+insert fraud with reason "More than 3 transactions for customer with transaction and merchant type"
+end
