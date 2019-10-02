@@ -3,7 +3,6 @@ package com.myspace.ceptest;
 import fraud.analysis.demo.transaction.Transaction;
 import fraud.analysis.demo.transaction.CEPFraud;
 
-declare Transaction @role( event )  @timestamp( timestamp ) end
 rule "If number of transactions for a specific merchant type and transaction type is greater than {n} in 1 {m}"
 when
 If there are > than 2 Transaction with "POS" and "A797979990" over 1m
