@@ -6,7 +6,7 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 
 rule "tet"
 when
-accumulate ($cct: Transaction() over window:time (15m) from entry-point Reference;
+accumulate ($cct: Transaction() over window:time (1m) from entry-point Reference;
 				$nrOfTransactions : count($cct), 
 				$list: collectList($cct);
 				$nrOfTransactions >= 4)
