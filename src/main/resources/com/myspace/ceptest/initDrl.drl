@@ -9,7 +9,7 @@ when
 accumulate ($b:Transaction(transactionType == "Web", merchantType=="A433998") from entry-point Reference;
 $number: count($b),$list: collectList($b);$number > 2)
 $c1: Transaction() from $list;
-$c2: Transaction(this != $c1, this.transactionId !this=$c1.transactionId, this.timestamp - $c1.timestamp <60,000) from $list 
+$c2: Transaction(this != $c1, this.transactionId !this=$c1.transactionId, this.timestamp - $c1.timestamp <60000) from $list 
 then
 CEPFraud cepFraud = new CEPFraud();
 cepFraud.setTransaction($c2);
