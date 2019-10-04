@@ -6,7 +6,7 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 
 rule "tet"
 when
-tn: transaction()
+tn: Transaction()
 accumulate ($b:Transaction(this.transactionType == tn.transactionId, this.merchantType==tn.merchantType) from entry-point Reference;
 $number: count($b);$number > 2)
 then
