@@ -4,6 +4,7 @@ import fraud.analysis.demo.transaction.Transaction;
 rule "print test"
 when
 accumulate ($b:Transaction(transactionType == "Web", merchantType=="A433998") over window:time(1m) from entry-point Reference;$number: count($b))
+$list: collectList($b);$number > 2)$c1: Transaction() from $list;$c2: Transaction(this != $c1, this.customerId ==$c1.customerId) from $list
 then
 System.out.println("hello here"+$number);
 end
