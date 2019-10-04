@@ -8,12 +8,12 @@ rule "tet"
 when
 accumulate ($b:Transaction(transactionType == "POS", merchantType=="A433998") over window:time(1m) from entry-point Reference;
 $number: count($b),$list: collectList($b);$number > 2)
-$c1 from $list
+$c1: Transaction() from $list;
 then
 System.out.println("rule fired");
 System.out.println("here");
 CEPFraud cepFraud = new CEPFraud();
-cepFraud.setTransaction(e1);
+cepFraud.setTransaction($c1);
 cepFraud.setFraudReason("fraud");
 insert(cepFraud);
 end
