@@ -14,7 +14,7 @@ accumulate ($cct: Transaction() over window:time (1m) from entry-point Reference
 	$c2: Transaction(this != $c1, this after[0s, 10s] $c1) from $list		
 then
 CEPFraud cepFraud = new CEPFraud();
-cepFraud.setTransaction(tn);
+cepFraud.setTransaction($c2);
 cepFraud.setFraudReason("More than 2 txns for Web purchases for the merchant");
 insert(cepFraud);
 end
