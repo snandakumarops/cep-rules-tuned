@@ -1,2 +1,7 @@
 package com.myspace.ceptest;
 
+rule "print test"
+when
+then
+System.out.println("hello here");
+end
