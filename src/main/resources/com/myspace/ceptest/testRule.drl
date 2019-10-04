@@ -3,7 +3,7 @@ import fraud.analysis.demo.transaction.Transaction;
 
 rule "print test"
 when
-e1: Transaction(transactionType == "POS") from entry-point Reference 
+accumulate ($b:Transaction(transactionType == "POS", merchantType=="A433998") over window:time(1m) from entry-point Reference;$number: count($b))
 then
-System.out.println("hello here"+e1.getTransactionId());
+System.out.println("hello here"+$number);
 end
