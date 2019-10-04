@@ -11,7 +11,7 @@ t:Transaction(this.merchantType==r.merchantType, this.transactionType==r.transac
 then
 CEPFraud cepFraud = new CEPFraud();
 cepFraud.setTransaction(t);
-cepFraud.setFraudReason("More than 2 txns for Web purchases for the merchant"+r.getTransactionId());
+cepFraud.setFraudReason("Transaction with the same merchant in the last minute"+r.getTransactionId());
 System.out.println("here"+cepFraud.getFraudReason());
 insert(cepFraud);
 retract(r);
