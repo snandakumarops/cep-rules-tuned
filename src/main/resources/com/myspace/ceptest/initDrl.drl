@@ -11,6 +11,7 @@ then
 CEPFraud cepFraud = new CEPFraud();
 
 cepFraud.setFraudReason("More than 2 txns for Web purchases for the merchant"+r.getTransactionId());
+System.out.println("here"+cepFraud.getFraudReason());
 insert(cepFraud);
 retract(r);
 end
