@@ -1,4 +1,5 @@
 package com.myspace.ceptest;
+import fraud.analysis.demo.transaction.Transaction;
 
 rule "print test"
 when
