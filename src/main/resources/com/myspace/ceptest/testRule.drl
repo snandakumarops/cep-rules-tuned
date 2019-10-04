@@ -2,7 +2,7 @@ package com.myspace.ceptest;
 
 rule "print test"
 when
-e1: Transaction() from entry-point Reference
+e1: Transaction(transactionType=="POS") from entry-point Reference over 1m
 then
-// System.out.println("hello here"+e1.getTransactionId());
+System.out.println("hello here"+e1.getTransactionId());
 end
