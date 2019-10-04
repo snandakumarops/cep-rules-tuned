@@ -6,12 +6,44 @@ package com.myspace.ceptest;
 
 public class Reference implements java.io.Serializable {
 
-    static final long serialVersionUID = 1L;
+	static final long serialVersionUID = 1L;
 
-    public Reference() {
-    }
+	private java.lang.String transactionId;
+	private java.lang.String transactionType;
+	private java.lang.String merchantType;
 
+	public Reference() {
+	}
 
+	public java.lang.String getTransactionId() {
+		return this.transactionId;
+	}
 
+	public void setTransactionId(java.lang.String transactionId) {
+		this.transactionId = transactionId;
+	}
+
+	public java.lang.String getTransactionType() {
+		return this.transactionType;
+	}
+
+	public void setTransactionType(java.lang.String transactionType) {
+		this.transactionType = transactionType;
+	}
+
+	public java.lang.String getMerchantType() {
+		return this.merchantType;
+	}
+
+	public void setMerchantType(java.lang.String merchantType) {
+		this.merchantType = merchantType;
+	}
+
+	public Reference(java.lang.String transactionId,
+			java.lang.String transactionType, java.lang.String merchantType) {
+		this.transactionId = transactionId;
+		this.transactionType = transactionType;
+		this.merchantType = merchantType;
+	}
 
 }
