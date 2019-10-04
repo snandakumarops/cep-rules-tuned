@@ -2,6 +2,7 @@ package com.myspace.ceptest;
 
 rule "print test"
 when
+e1: Transaction() from entry-point Reference
 then
-System.out.println("hello here");
+System.out.println("hello here"+e1.transactionId);
 end
