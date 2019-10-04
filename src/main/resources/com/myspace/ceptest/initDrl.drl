@@ -6,10 +6,10 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 
 rule "tet"
 when
-txn: Transaction() from entry-point main	
+r:Reference()	
 then
 CEPFraud cepFraud = new CEPFraud();
-cepFraud.setTransaction(txn);
+cepFraud.setTransaction(r);
 cepFraud.setFraudReason("More than 2 txns for Web purchases for the merchant");
 insert(cepFraud);
 end
