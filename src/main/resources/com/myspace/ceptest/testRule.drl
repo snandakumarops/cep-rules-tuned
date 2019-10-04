@@ -4,5 +4,5 @@ rule "print test"
 when
 e1: Transaction() from entry-point Reference
 then
-System.out.println("hello here"+e1.getTransactionId());
+// System.out.println("hello here"+e1.getTransactionId());
 end
