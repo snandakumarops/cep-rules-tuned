@@ -7,7 +7,7 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 rule "tet"
 when
 tn: transaction()
-accumulate ($b:Transaction(transactionType == tn.transactionId, merchantType==tn.merchantType,(tn.timestamp - timestamp) <60000) from entry-point Reference;
+accumulate ($b:Transaction(this.transactionType == tn.transactionId, this.merchantType==tn.merchantType,(tn.timestamp - this.timestamp) <60000) from entry-point Reference;
 $number: count($b);$number > 2)
 then
 CEPFraud cepFraud = new CEPFraud();
