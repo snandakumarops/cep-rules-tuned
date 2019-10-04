@@ -9,7 +9,7 @@ when
 r:Reference()	
 then
 CEPFraud cepFraud = new CEPFraud();
-cepFraud.setTransaction(r);
+
 cepFraud.setFraudReason("More than 2 txns for Web purchases for the merchant");
 insert(cepFraud);
 end
