@@ -6,15 +6,10 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 
 rule "tet"
 when
-accumulate ($cct: Transaction() over window:time (1m) from entry-point Reference;
-				$nrOfTransactions : count($cct), 
-				$list: collectList($cct);
-				$nrOfTransactions >= 4)
-	$c1: Transaction() from $list
-	$c2: Transaction(this != $c1, this after[0s, 10s] $c1) from $list		
+txn: Transaction() from entry-point main	
 then
 CEPFraud cepFraud = new CEPFraud();
-cepFraud.setTransaction($c2);
+cepFraud.setTransaction(txn);
 cepFraud.setFraudReason("More than 2 txns for Web purchases for the merchant");
 insert(cepFraud);
 end
