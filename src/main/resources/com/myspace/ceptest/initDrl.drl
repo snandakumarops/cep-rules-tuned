@@ -2,14 +2,14 @@ package com.myspace.ceptest;
 import fraud.analysis.demo.transaction.Transaction;
 import fraud.analysis.demo.transaction.CEPFraud;
 
-declare Transaction @role( event )  end
+declare Transaction @role( event )  @timestamp( timestamp ) end
 
 rule "tet"
 when
 accumulate ($b:Transaction(transactionType == "Web", merchantType=="A433998") over window:time(1m) from entry-point Reference;
 $number: count($b),$list: collectList($b);$number > 2)
 $c1: Transaction() from $list;
-$c2: Transaction(this != $c1, this.transactionId != $c1.transactionId) from $list 
+$c2: Transaction(this != $c1, this.transactionId !=$c1.transactionId) from $list 
 then
 CEPFraud cepFraud = new CEPFraud();
 cepFraud.setTransaction($c2);
