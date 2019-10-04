@@ -3,7 +3,7 @@ import fraud.analysis.demo.transaction.Transaction;
 
 rule "print test"
 when
-e1: Transaction(transactionType=="POS") from entry-point Reference over 1m
+e1: Transaction(transactionType == "POS") from entry-point Reference 
 then
 System.out.println("hello here"+e1.getTransactionId());
 end
