@@ -10,7 +10,8 @@ r:Reference()
 then
 CEPFraud cepFraud = new CEPFraud();
 
-cepFraud.setFraudReason("More than 2 txns for Web purchases for the merchant");
+cepFraud.setFraudReason("More than 2 txns for Web purchases for the merchant"+r.getTransactionId());
 insert(cepFraud);
+retract(r);
 end
 
