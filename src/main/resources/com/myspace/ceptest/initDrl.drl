@@ -7,7 +7,7 @@ declare Transaction @role( event )  @timestamp( timestamp ) end
 rule "tet"
 when
 r:Reference()
-t:Transaction(this.merchantType==r.merchantType, this.transactionType==r.transactionType, this.transactionId != r.transactionId) over window:time (1m) from entry-point Reference;
+t:Transaction(this.merchantType==r.merchantType, this.transactionType==r.transactionType, this.transactionId != r.transactionId) over window:time (10m) from entry-point Reference;
 then
 CEPFraud cepFraud = new CEPFraud();
 Transaction txn = new Transaction();
