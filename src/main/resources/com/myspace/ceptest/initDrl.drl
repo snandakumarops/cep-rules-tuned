@@ -13,7 +13,7 @@ CEPFraud cepFraud = new CEPFraud();
 Transaction txn = new Transaction();
 txn.setTransactionId(r.getTransactionId());
 cepFraud.setTransaction(txn);
-cepFraud.setFraudReason("Transaction with the same merchant in the last minute"+r.getTransactionId());
+cepFraud.setFraudReason("Transaction with the same merchant in the last minute");
 System.out.println("here"+cepFraud.getFraudReason());
 insert(cepFraud);
 retract(r);
