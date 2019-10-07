@@ -14,9 +14,7 @@ rule "Row 1 FreqRefRule"
 		 time : String( this == "10" )
 		r:Reference() t:Transaction(this.merchantType==r.merchantType, this.transactionType==r.transactionType,this.transactionType==txnType, this.transactionId != r.transactionId) over window:time (time m) from entry-point Reference;
 	then
-		 CEPFraud cepFraud = new CEPFraud();
-		 cepFraud.setFraudReason( "More than 2 txns in 1 min" );
-		 insert( cepFraud );
-		CEPFraud cepFraud = new CEPFraud();Transaction txn = new Transaction();txn.setTransactionId(r.getTransactionId());cepFraud.setTransaction(txn);cepFraud.setFraudReason(cepFraud.fraudReason);System.out.println("here"+cepFraud.getFraudReason());insert(cepFraud);retract(r);
+	
+		CEPFraud cepFraud = new CEPFraud();Transaction txn = new Transaction();txn.setTransactionId(r.getTransactionId());cepFraud.setTransaction(txn);cepFraud.setFraudReason("hello");System.out.println("here"+cepFraud.getFraudReason());insert(cepFraud);retract(r);
 end
 
