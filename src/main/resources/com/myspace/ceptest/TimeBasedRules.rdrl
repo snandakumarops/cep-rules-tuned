@@ -1,9 +1,0 @@
-package com.myspace.ceptest;
-
-import java.lang.Number;
-
-rule "TimeBasedRules"
-	dialect "mvel"
-	when
-	then
-end
