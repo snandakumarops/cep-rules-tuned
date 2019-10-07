@@ -3,11 +3,16 @@ package com.myspace.ceptest;
 
 import fraud.analysis.demo.transaction.CEPFraud;
 import fraud.analysis.demo.transaction.Transaction;
+import java.lang.String;
+import java.lang.Long;
 
-rule "hello"
-when
-then
-System.out.println("hello");
+//from row number: 1
+rule "Row 1 FreqRefRule"
+	dialect "mvel"
+	when
+		 txnType : String( this == "POS" )
+		r:Reference() t:Transaction(this.merchantType==r.merchantType, this.transactionType==r.transactionType,this.transactionType==txnType, this.transactionId != r.transactionId) over window:time (tm) from entry-point Reference;
+	then
+		CEPFraud cepFraud = new CEPFraud();Transaction txn = new Transaction();txn.setTransactionId(r.getTransactionId());cepFraud.setTransaction(txn);cepFraud.setFraudReason(cepFraud.fraudReason);System.out.println("here"+cepFraud.getFraudReason());insert(cepFraud);retract(r);
 end
-
 
