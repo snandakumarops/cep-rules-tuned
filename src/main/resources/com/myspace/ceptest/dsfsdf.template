@@ -9,10 +9,10 @@
       <definition>If there are &gt; than 1 Transaction with &quot;{transactionType}&quot; and merchantType over {t}m</definition>
       <values>
         <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-          <value>$transactionType</value>
+          <value>POS</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
         <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-          <value>$t</value>
+          <value>10</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
       </values>
     </dslSentence>
@@ -23,7 +23,7 @@
       <definition>insert fraud with reason &quot;{fraudReason}&quot;</definition>
       <values>
         <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-          <value>$fraudReason</value>
+          <value>fraud</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
       </values>
     </dslSentence>
