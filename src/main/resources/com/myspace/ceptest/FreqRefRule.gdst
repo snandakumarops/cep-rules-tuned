@@ -23,35 +23,8 @@
             <isOtherwise>false</isOtherwise>
           </typedDefaultValue>
           <hideColumn>false</hideColumn>
-          <width>100</width>
+          <width>219</width>
           <header>Transaction Type</header>
-          <constraintValueType>1</constraintValueType>
-          <factField>this</factField>
-          <fieldType>this</fieldType>
-          <operator>==</operator>
-          <parameters/>
-          <binding></binding>
-        </condition-column52>
-      </conditions>
-      <window>
-        <parameters/>
-      </window>
-      <entryPointName></entryPointName>
-    </Pattern52>
-    <Pattern52>
-      <factType>String</factType>
-      <boundName>time</boundName>
-      <isNegated>false</isNegated>
-      <conditions>
-        <condition-column52>
-          <typedDefaultValue>
-            <valueString></valueString>
-            <dataType>STRING</dataType>
-            <isOtherwise>false</isOtherwise>
-          </typedDefaultValue>
-          <hideColumn>false</hideColumn>
-          <width>100</width>
-          <header>Time</header>
           <constraintValueType>1</constraintValueType>
           <factField>this</factField>
           <fieldType>this</fieldType>
@@ -80,7 +53,7 @@
               <value>txnType</value>
             </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
             <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-              <value>time </value>
+              <value>t </value>
             </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
           </values>
         </org.drools.workbench.models.datamodel.rule.DSLSentence>
@@ -97,6 +70,33 @@
         </org.drools.workbench.models.guided.dtable.shared.model.BRLConditionVariableColumn>
       </childColumns>
     </org.drools.workbench.models.guided.dtable.shared.model.BRLConditionColumn>
+    <Pattern52>
+      <factType>Long</factType>
+      <boundName>t</boundName>
+      <isNegated>false</isNegated>
+      <conditions>
+        <condition-column52>
+          <typedDefaultValue>
+            <valueString></valueString>
+            <dataType>STRING</dataType>
+            <isOtherwise>false</isOtherwise>
+          </typedDefaultValue>
+          <hideColumn>false</hideColumn>
+          <width>100</width>
+          <header>Time </header>
+          <constraintValueType>1</constraintValueType>
+          <factField>this</factField>
+          <fieldType>this</fieldType>
+          <operator>==</operator>
+          <parameters/>
+          <binding></binding>
+        </condition-column52>
+      </conditions>
+      <window>
+        <parameters/>
+      </window>
+      <entryPointName></entryPointName>
+    </Pattern52>
   </conditionPatterns>
   <actionCols>
     <insert-fact-column52>
@@ -106,7 +106,7 @@
         <isOtherwise>false</isOtherwise>
       </typedDefaultValue>
       <hideColumn>false</hideColumn>
-      <width>100</width>
+      <width>382</width>
       <header>Fraud Reason</header>
       <factType>CEPFraud</factType>
       <boundName>cepFraud</boundName>
@@ -178,6 +178,9 @@
       <org.kie.soup.project.datamodel.imports.Import>
         <type>java.lang.String</type>
       </org.kie.soup.project.datamodel.imports.Import>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>java.lang.Long</type>
+      </org.kie.soup.project.datamodel.imports.Import>
     </imports>
   </imports>
   <packageName>com.myspace.ceptest</packageName>
@@ -202,14 +205,14 @@
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
-        <valueString>10</valueString>
-        <dataType>STRING</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-      <value>
         <valueBoolean>true</valueBoolean>
         <valueString></valueString>
         <dataType>BOOLEAN</dataType>
+        <isOtherwise>false</isOtherwise>
+      </value>
+      <value>
+        <valueString></valueString>
+        <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
       <value>
