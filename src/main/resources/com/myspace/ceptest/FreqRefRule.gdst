@@ -2,16 +2,144 @@
   <tableName>FreqRefRule</tableName>
   <rowNumberCol>
     <hideColumn>false</hideColumn>
-    <width>-1</width>
+    <width>50</width>
   </rowNumberCol>
   <descriptionCol>
     <hideColumn>false</hideColumn>
-    <width>-1</width>
+    <width>150</width>
   </descriptionCol>
   <metadataCols/>
   <attributeCols/>
-  <conditionPatterns/>
-  <actionCols/>
+  <conditionPatterns>
+    <Pattern52>
+      <factType>String</factType>
+      <boundName>txnType</boundName>
+      <isNegated>false</isNegated>
+      <conditions>
+        <condition-column52>
+          <typedDefaultValue>
+            <valueString></valueString>
+            <dataType>STRING</dataType>
+            <isOtherwise>false</isOtherwise>
+          </typedDefaultValue>
+          <hideColumn>false</hideColumn>
+          <width>100</width>
+          <header>Transaction Type</header>
+          <constraintValueType>1</constraintValueType>
+          <factField>this</factField>
+          <fieldType>this</fieldType>
+          <operator>==</operator>
+          <parameters/>
+          <binding></binding>
+        </condition-column52>
+      </conditions>
+      <window>
+        <parameters/>
+      </window>
+      <entryPointName></entryPointName>
+    </Pattern52>
+    <Pattern52>
+      <factType>String</factType>
+      <boundName>time</boundName>
+      <isNegated>false</isNegated>
+      <conditions>
+        <condition-column52>
+          <typedDefaultValue>
+            <valueString></valueString>
+            <dataType>STRING</dataType>
+            <isOtherwise>false</isOtherwise>
+          </typedDefaultValue>
+          <hideColumn>false</hideColumn>
+          <width>100</width>
+          <header>Time</header>
+          <constraintValueType>1</constraintValueType>
+          <factField>this</factField>
+          <fieldType>this</fieldType>
+          <operator>==</operator>
+          <parameters/>
+          <binding></binding>
+        </condition-column52>
+      </conditions>
+      <window>
+        <parameters/>
+      </window>
+      <entryPointName></entryPointName>
+    </Pattern52>
+    <org.drools.workbench.models.guided.dtable.shared.model.BRLConditionColumn>
+      <hideColumn>false</hideColumn>
+      <width>-1</width>
+      <header>eval</header>
+      <constraintValueType>1</constraintValueType>
+      <parameters/>
+      <definition>
+        <org.drools.workbench.models.datamodel.rule.DSLSentence>
+          <drl>r:Reference() t:Transaction(this.merchantType==r.merchantType, this.transactionType==r.transactionType,this.transactionType=={transactionType}, this.transactionId != r.transactionId) over window:time ({t}m) from entry-point Reference;</drl>
+          <definition>If there are &gt; than 1 Transaction with {transactionType} and merchantType over {t}m</definition>
+          <values>
+            <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
+              <value>txnType</value>
+            </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
+            <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
+              <value>time</value>
+            </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
+          </values>
+        </org.drools.workbench.models.datamodel.rule.DSLSentence>
+      </definition>
+      <childColumns>
+        <org.drools.workbench.models.guided.dtable.shared.model.BRLConditionVariableColumn>
+          <hideColumn>false</hideColumn>
+          <width>100</width>
+          <header>eval</header>
+          <constraintValueType>1</constraintValueType>
+          <fieldType>Boolean</fieldType>
+          <parameters/>
+          <varName></varName>
+        </org.drools.workbench.models.guided.dtable.shared.model.BRLConditionVariableColumn>
+      </childColumns>
+    </org.drools.workbench.models.guided.dtable.shared.model.BRLConditionColumn>
+  </conditionPatterns>
+  <actionCols>
+    <insert-fact-column52>
+      <typedDefaultValue>
+        <valueString></valueString>
+        <dataType>STRING</dataType>
+        <isOtherwise>false</isOtherwise>
+      </typedDefaultValue>
+      <hideColumn>false</hideColumn>
+      <width>100</width>
+      <header>Fraud Reason</header>
+      <factType>CEPFraud</factType>
+      <boundName>cepFraud</boundName>
+      <factField>fraudReason</factField>
+      <type>String</type>
+      <isInsertLogical>false</isInsertLogical>
+    </insert-fact-column52>
+    <org.drools.workbench.models.guided.dtable.shared.model.BRLActionColumn>
+      <hideColumn>false</hideColumn>
+      <width>-1</width>
+      <header>evalAction</header>
+      <definition>
+        <org.drools.workbench.models.datamodel.rule.DSLSentence>
+          <drl>CEPFraud cepFraud = new CEPFraud();Transaction txn = new Transaction();txn.setTransactionId(r.getTransactionId());cepFraud.setTransaction(txn);cepFraud.setFraudReason({fraudReason});System.out.println(&quot;here&quot;+cepFraud.getFraudReason());insert(cepFraud);retract(r);</drl>
+          <definition>insert fraud with reason {fraudReason}</definition>
+          <values>
+            <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
+              <value>cepFraud.fraudReason</value>
+            </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
+          </values>
+        </org.drools.workbench.models.datamodel.rule.DSLSentence>
+      </definition>
+      <childColumns>
+        <org.drools.workbench.models.guided.dtable.shared.model.BRLActionVariableColumn>
+          <hideColumn>false</hideColumn>
+          <width>100</width>
+          <header>evalAction</header>
+          <varName></varName>
+          <fieldType>Boolean</fieldType>
+        </org.drools.workbench.models.guided.dtable.shared.model.BRLActionVariableColumn>
+      </childColumns>
+    </org.drools.workbench.models.guided.dtable.shared.model.BRLActionColumn>
+  </actionCols>
   <auditLog>
     <filter class="org.drools.guvnor.client.modeldriven.dt52.auditlog.DecisionTableAuditLogFilter">
       <acceptedTypes>
@@ -40,10 +168,61 @@
     <entries/>
   </auditLog>
   <imports>
-    <imports/>
+    <imports>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>fraud.analysis.demo.transaction.CEPFraud</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>fraud.analysis.demo.transaction.Transaction</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>java.lang.String</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+    </imports>
   </imports>
   <packageName>com.myspace.ceptest</packageName>
   <tableFormat>EXTENDED_ENTRY</tableFormat>
   <hitPolicy>NONE</hitPolicy>
-  <data/>
+  <data>
+    <list>
+      <value>
+        <valueNumeric class="int">1</valueNumeric>
+        <valueString></valueString>
+        <dataType>NUMERIC_INTEGER</dataType>
+        <isOtherwise>false</isOtherwise>
+      </value>
+      <value>
+        <valueString></valueString>
+        <dataType>STRING</dataType>
+        <isOtherwise>false</isOtherwise>
+      </value>
+      <value>
+        <valueString>POS</valueString>
+        <dataType>STRING</dataType>
+        <isOtherwise>false</isOtherwise>
+      </value>
+      <value>
+        <valueString>10</valueString>
+        <dataType>STRING</dataType>
+        <isOtherwise>false</isOtherwise>
+      </value>
+      <value>
+        <valueBoolean>true</valueBoolean>
+        <valueString></valueString>
+        <dataType>BOOLEAN</dataType>
+        <isOtherwise>false</isOtherwise>
+      </value>
+      <value>
+        <valueString>More than 2 POS transactions in 10 minutes</valueString>
+        <dataType>STRING</dataType>
+        <isOtherwise>false</isOtherwise>
+      </value>
+      <value>
+        <valueBoolean>true</valueBoolean>
+        <valueString></valueString>
+        <dataType>BOOLEAN</dataType>
+        <isOtherwise>false</isOtherwise>
+      </value>
+    </list>
+  </data>
 </decision-table52>
