@@ -53,7 +53,7 @@
               <value>txnType</value>
             </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
             <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-              <value>t </value>
+              <value>t</value>
             </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
           </values>
         </org.drools.workbench.models.datamodel.rule.DSLSentence>
