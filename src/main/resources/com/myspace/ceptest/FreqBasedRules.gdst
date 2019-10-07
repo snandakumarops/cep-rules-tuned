@@ -1,5 +1,5 @@
 <decision-table52>
-  <tableName>FrequencyBasedRules</tableName>
+  <tableName>FreqBasedRules</tableName>
   <rowNumberCol>
     <hideColumn>false</hideColumn>
     <width>50</width>
