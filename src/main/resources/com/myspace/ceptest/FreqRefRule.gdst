@@ -80,7 +80,7 @@
               <value>txnType</value>
             </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
             <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-              <value>time</value>
+              <value>time </value>
             </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
           </values>
         </org.drools.workbench.models.datamodel.rule.DSLSentence>
@@ -183,46 +183,5 @@
   <packageName>com.myspace.ceptest</packageName>
   <tableFormat>EXTENDED_ENTRY</tableFormat>
   <hitPolicy>NONE</hitPolicy>
-  <data>
-    <list>
-      <value>
-        <valueNumeric class="int">1</valueNumeric>
-        <valueString></valueString>
-        <dataType>NUMERIC_INTEGER</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-      <value>
-        <valueString></valueString>
-        <dataType>STRING</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-      <value>
-        <valueString>POS</valueString>
-        <dataType>STRING</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-      <value>
-        <valueString> 10</valueString>
-        <dataType>STRING</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-      <value>
-        <valueBoolean>true</valueBoolean>
-        <valueString></valueString>
-        <dataType>BOOLEAN</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-      <value>
-        <valueString>More than 2 POS transactions in 10 minutes</valueString>
-        <dataType>STRING</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-      <value>
-        <valueBoolean>true</valueBoolean>
-        <valueString></valueString>
-        <dataType>BOOLEAN</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-    </list>
-  </data>
+  <data/>
 </decision-table52>
