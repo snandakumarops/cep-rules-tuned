@@ -1,0 +1,21 @@
+<rule>
+  <name>dsfsdf</name>
+  <modelVersion>1.0</modelVersion>
+  <attributes/>
+  <metadataList/>
+  <lhs/>
+  <rhs/>
+  <imports>
+    <imports/>
+  </imports>
+  <packageName>com.myspace.ceptest</packageName>
+  <isNegated>false</isNegated>
+  <table>
+    <entry>
+      <string>__ID_KOL_NAME__</string>
+      <list/>
+    </entry>
+  </table>
+  <idCol>0</idCol>
+  <rowsCount>0</rowsCount>
+</rule>
