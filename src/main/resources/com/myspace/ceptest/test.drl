@@ -10,9 +10,10 @@ import java.lang.String;
 rule "Row 1 FreqRefRule"
 	dialect "mvel"
 	when
-		 txnType : String( this == "POS" )
-		 time : String( this == "10" )
-		r:Reference() t:Transaction(this.merchantType==r.merchantType, this.transactionType==r.transactionType,this.transactionType==txnType, this.transactionId != r.transactionId) over window:time (time m) from entry-point Reference;
+		 txnType : java.lang.String( this == "POS" )
+		 time : java.lang.String( this == "10" )
+		r:Reference() 
+		t:Transaction(this.merchantType==r.merchantType, this.transactionType==r.transactionType,this.transactionType==txnType, this.transactionId != r.transactionId) over window:time (time m) from entry-point Reference;
 	then
 	
 		CEPFraud cepFraud = new CEPFraud();Transaction txn = new Transaction();txn.setTransactionId(r.getTransactionId());cepFraud.setTransaction(txn);cepFraud.setFraudReason("hello");System.out.println("here"+cepFraud.getFraudReason());insert(cepFraud);retract(r);
