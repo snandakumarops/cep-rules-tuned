@@ -3,8 +3,7 @@ package com.myspace.ceptest;
 
 import fraud.analysis.demo.transaction.CEPFraud;
 import fraud.analysis.demo.transaction.Transaction;
-import java.lang.String;
-import java.lang.Long;
+
 
 
 
