@@ -12,7 +12,7 @@
           <value>transactionType</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
         <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-          <value>1</value>
+          <value>t</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
       </values>
     </dslSentence>
