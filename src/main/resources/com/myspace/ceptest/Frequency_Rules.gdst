@@ -80,7 +80,7 @@
               <value>txnType</value>
             </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
             <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-              <value>time </value>
+              <value>time</value>
             </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
           </values>
         </org.drools.workbench.models.datamodel.rule.DSLSentence>
