@@ -1,0 +1,9 @@
+package com.myspace.ceptest;
+
+import java.lang.Number;
+
+rule "awda"
+	dialect "mvel"
+	when
+	then
+end
