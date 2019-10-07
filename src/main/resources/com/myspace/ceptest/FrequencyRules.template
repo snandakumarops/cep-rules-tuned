@@ -6,7 +6,14 @@
   <lhs/>
   <rhs/>
   <imports>
-    <imports/>
+    <imports>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>fraud.analysis.demo.transaction.Transaction</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>fraud.analysis.demo.transaction.CEPFraud</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+    </imports>
   </imports>
   <packageName>com.myspace.ceptest</packageName>
   <isNegated>false</isNegated>
