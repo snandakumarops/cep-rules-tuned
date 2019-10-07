@@ -6,7 +6,11 @@
   <lhs/>
   <rhs/>
   <imports>
-    <imports/>
+    <imports>
+      <org.kie.soup.project.datamodel.imports.Import>
+        <type>com.myspace.ceptest.Reference</type>
+      </org.kie.soup.project.datamodel.imports.Import>
+    </imports>
   </imports>
   <packageName>fraud.analysis.demo.transaction</packageName>
   <isNegated>false</isNegated>
