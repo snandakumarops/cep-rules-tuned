@@ -9,7 +9,7 @@
       <definition>If there are &gt; than 1 Transaction with &quot;{transactionType}&quot; and merchantType over {t}m</definition>
       <values>
         <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-          <value>transactionType</value>
+          <value>$transactionType</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
         <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
           <value>t</value>
@@ -44,10 +44,10 @@
     <entry>
       <string>__ID_KOL_NAME__</string>
       <list>
-        <string>2</string>
+        <string>4</string>
       </list>
     </entry>
   </table>
-  <idCol>2</idCol>
+  <idCol>5</idCol>
   <rowsCount>1</rowsCount>
 </rule>
