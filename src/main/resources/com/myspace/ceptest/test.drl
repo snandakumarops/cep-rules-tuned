@@ -4,6 +4,10 @@ package com.myspace.ceptest;
 import fraud.analysis.demo.transaction.CEPFraud;
 import fraud.analysis.demo.transaction.Transaction;
 
-
+rule "hello"
+when
+then
+System.out.println("hello");
+end
 
 
