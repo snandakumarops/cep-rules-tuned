@@ -5,5 +5,7 @@ import java.lang.Number;
 rule "TimeBasedRules"
 	dialect "mvel"
 	when
+		If there are > than 1 Transaction with "POS" and "A433998"
 	then
+		insert fraud with reason Transactions with the same merchant in the last minute
 end
