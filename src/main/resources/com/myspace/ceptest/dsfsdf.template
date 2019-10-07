@@ -12,7 +12,7 @@
           <value>$transactionType</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
         <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-          <value>t</value>
+          <value>$t</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
       </values>
     </dslSentence>
@@ -23,7 +23,7 @@
       <definition>insert fraud with reason &quot;{fraudReason}&quot;</definition>
       <values>
         <org.drools.workbench.models.datamodel.rule.DSLVariableValue>
-          <value>fraudReason</value>
+          <value>$fraudReason</value>
         </org.drools.workbench.models.datamodel.rule.DSLVariableValue>
       </values>
     </dslSentence>
@@ -45,9 +45,10 @@
       <string>__ID_KOL_NAME__</string>
       <list>
         <string>4</string>
+        <string>6</string>
       </list>
     </entry>
   </table>
-  <idCol>5</idCol>
-  <rowsCount>1</rowsCount>
+  <idCol>6</idCol>
+  <rowsCount>2</rowsCount>
 </rule>
