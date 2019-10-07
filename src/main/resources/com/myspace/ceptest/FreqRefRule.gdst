@@ -99,21 +99,6 @@
     </Pattern52>
   </conditionPatterns>
   <actionCols>
-    <insert-fact-column52>
-      <typedDefaultValue>
-        <valueString></valueString>
-        <dataType>STRING</dataType>
-        <isOtherwise>false</isOtherwise>
-      </typedDefaultValue>
-      <hideColumn>false</hideColumn>
-      <width>382</width>
-      <header>Fraud Reason</header>
-      <factType>CEPFraud</factType>
-      <boundName>cepFraud</boundName>
-      <factField>fraudReason</factField>
-      <type>String</type>
-      <isInsertLogical>false</isInsertLogical>
-    </insert-fact-column52>
     <org.drools.workbench.models.guided.dtable.shared.model.BRLActionColumn>
       <hideColumn>false</hideColumn>
       <width>-1</width>
@@ -212,11 +197,6 @@
       </value>
       <value>
         <valueString></valueString>
-        <dataType>STRING</dataType>
-        <isOtherwise>false</isOtherwise>
-      </value>
-      <value>
-        <valueString>More than 2 txns in 1 min</valueString>
         <dataType>STRING</dataType>
         <isOtherwise>false</isOtherwise>
       </value>
