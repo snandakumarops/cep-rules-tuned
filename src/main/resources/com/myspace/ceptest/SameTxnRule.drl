@@ -5,8 +5,8 @@ declare Transaction @role( event )  @timestamp( txnTS ) end
 
 rule "Same Txn Rules"
 when
-    curr: CurrentTxn(POS in ('9100','01'))
-    accumulate ($cct: Transaction(this.POS in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    curr: CurrentTxn(pos in ('9100','01'))
+    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
 				$sumOfTransactions : sum($cct),
 				$list: collectList($cct);
