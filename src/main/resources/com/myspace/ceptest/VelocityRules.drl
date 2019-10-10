@@ -19,7 +19,43 @@ when
 then
 	 CEPFraud cepFraud = new CEPFraud();
          cepFraud.setTransactionId(curr.getTransactionId());
-		cepFraud.setFraudReason("\nRules fired for Velocity Rules"+curr.getCardNumber());
+		cepFraud.setFraudReason("\nRules fired for Velocity Rules for any other country but singapore"+curr.getCardNumber());
+		insert(cepFraud);
+	
+end
+
+rule "Velocity Rules 2"
+when
+    curr: CurrentTxn()
+    accumulate ($cct: Transaction(txnCntry!='IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+				$nrOfTransactions : count($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
+				$list: collectList($cct);
+				$nrOfTransactions >= 2,
+				$sumOfTransactions >= 1000)
+	$t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Velocity Rules for any other country but India"+curr.getCardNumber());
+		insert(cepFraud);
+	
+end
+
+rule "Velocity Rules 3"
+when
+    curr: CurrentTxn()
+    accumulate ($cct: Transaction(txnCntry!='CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+				$nrOfTransactions : count($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
+				$list: collectList($cct);
+				$nrOfTransactions >= 3,
+				$sumOfTransactions >= 1000)
+	$t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Velocity Rules for any other country but china"+curr.getCardNumber());
 		insert(cepFraud);
 	
 end
