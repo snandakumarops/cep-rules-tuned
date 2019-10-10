@@ -15,7 +15,7 @@ when
     
 then
         CEPFraud cepFraud = new CEPFraud();
-        cepFraud.setTransaction($t);
+         cepFraud.setTransactionId(curr.getTransactionId());
 		cepFraud.setFraudReason("\nRules fired for fraud stage Rules"+curr.getCardNumber());
 		insert(cepFraud);
 
