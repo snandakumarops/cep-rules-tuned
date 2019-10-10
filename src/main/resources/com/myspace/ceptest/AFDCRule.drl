@@ -16,8 +16,10 @@ when
 				$cnt > 0)
 
     then
-    
-		System.out.println("\nRules fired for AFDC Rules"+curr.getCardNumber());
+        CEPFraud cepFraud = new CEPFraud();
+        cepFraud.setTransaction(curr);
+		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
+		insert(cepFraud);
 	
 end
 
@@ -30,8 +32,11 @@ when
 				$cnt > 0)
 
     then
-    
-	System.out.println("\nRules fired for AFDC Rules"+curr.getCardNumber());
+    CEPFraud cepFraud = new CEPFraud();
+        cepFraud.setTransaction(curr);
+		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
+		insert(cepFraud);
+	
 	
 end
 
@@ -45,7 +50,10 @@ when
 
     then
     
-	System.out.println("\nRules fired for AFDC Rules"+curr.getCardNumber());
+CEPFraud cepFraud = new CEPFraud();
+        cepFraud.setTransaction(curr);
+		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
+		insert(cepFraud);
 	
 end
 
