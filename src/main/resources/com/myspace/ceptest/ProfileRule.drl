@@ -12,8 +12,8 @@ when
     $addAmt: Number() from  accumulate ($ct: Transaction() over window:time (24h) from entry-point Reference;
     			sum($ct.getTxnAmt()))
     			
-    
-    accumulate(t: Transaction(this before[0h,24h] $ct, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $c: Transaction() from entry-point Reference over window:time (1440m);
+    accumulate(t: Transaction(this before[0h,24h] $c, this.cardNumber == curr.cardNumber) from entry-point Reference over window:time (1440m) 
                 $addAmtAvg: sum(t.getTxnAmt());
                 $addAmtAvg <= 1.5* $addAmt )
     
