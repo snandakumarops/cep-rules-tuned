@@ -15,7 +15,7 @@ when
 				$list: collectList($cct);
 				$nrOfTransactions >= 5,
 				$sumOfTransactions >= 1000)
-	$t: Transaction(this.cardNumber == curr.cardNumber) from $cct
+	$t: Transaction(this.cardNumber == curr.cardNumber) from $list
 then
 	System.out.println("\nRules fired for Velocity Rules for"+curr.getTransactionId());
 	retract(curr);
