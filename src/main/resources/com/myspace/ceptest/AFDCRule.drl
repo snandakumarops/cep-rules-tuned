@@ -34,3 +34,18 @@ when
 	System.out.println("\nRules fired for AFDC Rules"+curr.getCardNumber());
 	
 end
+
+
+rule "AFDC Rules- 3"
+when
+    curr: CurrentTxn(pos == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9100", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN") this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+				$cnt: count($cct);
+				$cnt > 0)
+
+    then
+    
+	System.out.println("\nRules fired for AFDC Rules"+curr.getCardNumber());
+	
+end
+
