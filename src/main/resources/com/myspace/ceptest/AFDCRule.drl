@@ -11,7 +11,7 @@ declare Transaction @role( event )  @timestamp( txnTS ) end
 rule "AFDC Rules"
 when
     curr: CurrentTxn(pos == "9100", txnCntry in ("US","MX","CO","BR"))
-    accumulate ($cct: Transaction(POS=="9100", this.txnCntry in ("SG", "TH", "PH", "MY", "IN"), curr.txnCntry in ("US","MX","CO","BR")) over window:time (480m) from entry-point Reference;
+    accumulate ($cct: Transaction(pos=="9100", this.txnCntry in ("SG", "TH", "PH", "MY", "IN"), curr.txnCntry in ("US","MX","CO","BR")) over window:time (480m) from entry-point Reference;
 				$cnt: count($cct);
 				$cnt > 0)
 
@@ -25,7 +25,7 @@ end
 rule "AFDC Rules- cntryset 2"
 when
     curr: CurrentTxn(pos == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
-    accumulate ($cct: Transaction(POS=="9100", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN")) over window:time (480m) from entry-point Reference;
+    accumulate ($cct: Transaction(pos=="9100", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN")) over window:time (480m) from entry-point Reference;
 				$cnt: count($cct);
 				$cnt > 0)
 
