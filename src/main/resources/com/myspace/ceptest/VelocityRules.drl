@@ -13,8 +13,8 @@ when
 				$nrOfTransactions : count($cct),
 				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
-				($nrOfTransactions >= 5 or
-				$sumOfTransactions >= 1000))
+				$nrOfTransactions >= 5,
+				$sumOfTransactions >= 1000)
 	$t: Transaction(this.cardNumber == curr.cardNumber) from $list
 then
 	System.out.println("\nRules fired for Velocity Rules for"+curr.getTransactionId());
