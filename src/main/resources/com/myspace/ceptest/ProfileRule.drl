@@ -7,7 +7,7 @@ declare Transaction @role( event )  @timestamp( txnTS ) end
 
 rule "Profile-Rules"
 when
-    curr: CurrentTxn(txnType=='POS')
+    curr: CurrentTxn(txnType=='ATM')
     
     $addAmt: Number() from  accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24h) from entry-point Reference;
     			sum($ct.getTxnAmt()))
