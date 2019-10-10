@@ -14,8 +14,8 @@ when
     $t: Transaction(txnType == 'cardReissue', this before[0h,72h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference
     
 then
-CEPFraud cepFraud = new CEPFraud();
-        cepFraud.setTransaction(curr);
+        CEPFraud cepFraud = new CEPFraud();
+        cepFraud.setTransaction($t);
 		cepFraud.setFraudReason("\nRules fired for fraud stage Rules"+curr.getCardNumber());
 		insert(cepFraud);
 
