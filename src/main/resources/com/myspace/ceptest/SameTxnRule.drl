@@ -12,7 +12,11 @@ when
 				$list: collectList($cct);
 				$nrOfTransactions >= 5)
 then
-	System.out.println("\nRules fired for Same type txn with no exceeding limit"+curr.getCardNumber());
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+		insert(cepFraud);
+	
 	
 end
 
@@ -25,7 +29,11 @@ when
 				$list: collectList($cct);
 					$sumOfTransactions >= 1000)
 then
-	System.out.println("\nRules fired for Same type txn with sum exceeding limit"+curr.getCardNumber());
+
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+		insert(cepFraud);
 	
 end
 
@@ -40,7 +48,11 @@ when
 				$list: collectList($cct);
 				$nrOfTransactions >= 5)
 then
-	System.out.println("\nRules fired for Same type txn for the country with no of transactions exceeding limit"+curr.getCardNumber());
+	
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+		insert(cepFraud);
 	
 end
 
@@ -55,8 +67,12 @@ when
 				$list: collectList($cct);
 				$sumOfTransactions >= 1000)
 then
-	System.out.println("\nRules fired for Same type txn for the country with amount exceeding limit"+curr.getCardNumber());
+
 	
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+		insert(cepFraud);
 end
 
 rule "Same Txn Rules with txn Country - avg > amount"
@@ -68,6 +84,11 @@ when
 				$list: collectList($cct);
 				$avgOfTransactions >= 500)
 then
-	System.out.println("\nRules fired for Same type txn for the country with avg exceeding limit"+curr.getCardNumber());
+
+	
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+		insert(cepFraud);
 	
 end
