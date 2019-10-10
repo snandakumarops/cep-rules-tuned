@@ -33,7 +33,7 @@ when
 
     then
     CEPFraud cepFraud = new CEPFraud();
-        cepFraud.setTransaction(curr);
+         cepFraud.setTransactionId(curr.getTransactionId());
 		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
 		insert(cepFraud);
 	
@@ -51,7 +51,7 @@ when
     then
     
 CEPFraud cepFraud = new CEPFraud();
-        cepFraud.setTransaction(curr);
+       cepFraud.setTransactionId(curr.getTransactionId());
 		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
 		insert(cepFraud);
 	
