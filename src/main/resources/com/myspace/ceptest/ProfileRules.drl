@@ -13,7 +13,7 @@ when
     			$list: collectList($cct))
     accumulate($cct: Transaction() over window:time (1440m) from $list;
                 $sum: count($cct.getTxnAmt()), 
-                $var: variance(sum, crr.getTxnAmt());
+                $var: variance(sum, curr.getTxnAmt());
                 $var >= 150)
 then
 	System.out.println("\nRules fired for Profile Rules");
