@@ -10,7 +10,7 @@ when
     curr: CurrentTxn(txnType=='POS')
     
     $addAmt: Number() from  accumulate ($ct: Transaction() over window:time (24h) from entry-point Reference;
-    			$addAmt: sum($ct.getTxnAmt()))
+    			sum($ct.getTxnAmt()))
     			
     
     accumulate(t: Transaction(this before[0h,24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
