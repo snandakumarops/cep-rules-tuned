@@ -12,8 +12,8 @@ when
     accumulate ($cct: Transaction() over window:time (1440h) from entry-point Reference;
     			$list: collectList($cct))
     accumulate($cct: Transaction() over window:time (1440m) from $list;
-                $addNos: count($cct.getTxnAmt();
-                res: variance($addNos, curr.getTxnAmt()) >= 150)
+                $cnt: count($cct);
+                $cnt >= 3)
 then
 	System.out.println("\nRules fired for Profile Rules");
 	
