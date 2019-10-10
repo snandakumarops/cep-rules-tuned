@@ -1,2 +1,20 @@
 package com.myspace.ceptest;
 
+import fraud.analysis.demo.transaction.Transaction;
+
+
+declare Transaction @role( event )  @timestamp( txnTS ) end
+
+rule "Fraud TS Stage Rules"
+when
+    curr: CurrentTxn(pos in ('9100','01'))
+    accumulate ($cct: Transaction(POS == '6100', txnAmt>=10000.00) over window:time (10m) from entry-point Reference;
+    			$list: collectList($cct))
+    $c : Transaction() from $list
+    $t: Transaction(txnType == 'cardReissue', this before[0h,72h] $c) over window:time (1440m) from entry-point Reference
+    
+then
+	System.out.println("\nRules fired for Profile Rules");
+	
+end
+
