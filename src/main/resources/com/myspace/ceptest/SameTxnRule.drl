@@ -8,7 +8,7 @@ when
     curr: CurrentTxn(pos in ('9100','01'))
     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
-				$sumOfTransactions : sum($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
 				$nrOfTransactions >= 5,
 				$sumOfTransactions >= 1000)
