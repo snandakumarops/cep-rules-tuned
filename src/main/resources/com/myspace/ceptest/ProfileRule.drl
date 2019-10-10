@@ -9,7 +9,7 @@ rule "Profile-Rules"
 when
     curr: CurrentTxn(txnType=='POS')
     
-    accumulate ($ct: Transaction() over window:time (24h) from entry-point Reference;
+    $addAmt: accumulate ($ct: Transaction() over window:time (24h) from entry-point Reference;
     			$addAmt: sum($ct.getTxnAmt()))
     			
     
