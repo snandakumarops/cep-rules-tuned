@@ -9,7 +9,7 @@ declare Transaction @role( event )  @timestamp( txnTS ) end
 rule "Velocity Rules"
 when
     curr: CurrentTxn()
-    accumulate ($cct: Transaction(txnCntry!='SG') over window:time (1415m) from entry-point Reference;
+    accumulate ($cct: Transaction(txnCntry!='SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
 				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
