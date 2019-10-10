@@ -31,6 +31,6 @@ when
 
     then
     
-	System.out.println("\nRules fired for Velocity Rules");
+	System.out.println("\nRules fired for AFDC Rules"+curr.getCardNumber());
 	
 end
