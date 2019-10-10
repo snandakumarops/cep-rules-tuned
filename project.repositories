@@ -3,8 +3,8 @@
     <repository>
       <include>true</include>
       <metadata>
-        <id>central</id>
-        <url>https://repo1.maven.org/maven2</url>
+        <id>jboss-ga-repository</id>
+        <url>http://maven.repository.redhat.com/techpreview/all</url>
         <source>SETTINGS</source>
       </metadata>
     </repository>
@@ -12,8 +12,24 @@
       <include>true</include>
       <metadata>
         <id>local</id>
-        <url>/home/jboss/.m2/repository</url>
+        <url>/Users/sadhananandakumar/.m2/repository</url>
         <source>LOCAL</source>
+      </metadata>
+    </repository>
+    <repository>
+      <include>true</include>
+      <metadata>
+        <id>jboss-ga-plugin-repository</id>
+        <url>http://maven.repository.redhat.com/techpreview/all</url>
+        <source>SETTINGS</source>
+      </metadata>
+    </repository>
+    <repository>
+      <include>true</include>
+      <metadata>
+        <id>central</id>
+        <url>https://repo.maven.apache.org/maven2</url>
+        <source>PROJECT</source>
       </metadata>
     </repository>
   </repositories>
