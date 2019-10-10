@@ -20,6 +20,10 @@ when
    
     
 then
-	System.out.println("\nRules fired for Profile Rules");
+
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules"+curr.getCardNumber());
+		insert(cepFraud);
 	
 end
