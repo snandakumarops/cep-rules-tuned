@@ -1,2 +1,36 @@
 package com.myspace.ceptest;
 
+
+
+import fraud.analysis.demo.transaction.Transaction;
+import fraud.analysis.demo.transaction.CurrentTxn;
+
+
+declare Transaction @role( event )  @timestamp( txnTS ) end
+
+rule "AFDC Rules"
+when
+    curr: CurrentTxn(POS == "9100", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(POS=="9100", curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.txnCntry in ("US","MX","CO","BR")) over window:time (480m) from entry-point Reference;
+				$cnt: count($cct);
+				$cnt > 0)
+
+    then
+    
+	System.out.println("\nRules fired for Velocity Rules");
+	
+end
+
+
+rule "AFDC Rules- cntryset 2"
+when
+    curr: CurrentTxn(POS == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(POS=="9100", curr.txnCntry in ("US","MX","CO","BR"), this.txnCntry in ("SG", "TH", "PH", "MY", "IN")) over window:time (480m) from entry-point Reference;
+				$cnt: count($cct);
+				$cnt > 0)
+
+    then
+    
+	System.out.println("\nRules fired for Velocity Rules");
+	
+end
