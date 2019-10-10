@@ -10,7 +10,7 @@ declare Transaction @role( event )  @timestamp( txnTS ) end
 
 rule "AFDC Rules"
 when
-    curr: CurrentTxn(POS == "9100", txnCntry in ("US","MX","CO","BR"))
+    curr: CurrentTxn(pos == "9100", txnCntry in ("US","MX","CO","BR"))
     accumulate ($cct: Transaction(POS=="9100", this.txnCntry in ("SG", "TH", "PH", "MY", "IN"), curr.txnCntry in ("US","MX","CO","BR")) over window:time (480m) from entry-point Reference;
 				$cnt: count($cct);
 				$cnt > 0)
