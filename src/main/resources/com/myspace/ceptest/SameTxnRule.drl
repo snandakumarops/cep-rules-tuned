@@ -16,3 +16,18 @@ then
 	System.out.println("\nRules fired for Same type txn"+curr.getCardNumber());
 	
 end
+
+
+rule "Same Txn Rules with txn Country"
+when
+    curr: CurrentTxn(pos in ('9100','01'))
+    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
+				$nrOfTransactions : count($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
+				$list: collectList($cct);
+				$nrOfTransactions >= 5,
+				$sumOfTransactions >= 1000)
+then
+	System.out.println("\nRules fired for Same type txn for the country"+curr.getCardNumber());
+	
+end
