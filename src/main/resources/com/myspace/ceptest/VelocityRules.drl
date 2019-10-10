@@ -10,7 +10,7 @@ rule "Velocity Rules"
 when
     accumulate ($cct: Transaction(txnCntry!='SG') over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
-				$sumOfTransactions : sum($cct.txnAmt),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
 				$nrOfTransactions >= 5,
 				$sumOfTransactions >= 1000)
