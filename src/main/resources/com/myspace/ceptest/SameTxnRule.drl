@@ -46,7 +46,7 @@ end
 
 
 
-rule "Same Txn Rules with txn Country - No > 5"
+rule "Same Txn Rules with txn Country - sum > amount"
 when
     curr: CurrentTxn(pos in ('9100','01'))
     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
