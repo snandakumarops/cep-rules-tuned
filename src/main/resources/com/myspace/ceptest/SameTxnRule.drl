@@ -3,31 +3,71 @@ package com.myspace.ceptest;
 
 declare Transaction @role( event )  @timestamp( txnTS ) end
 
-rule "Same Txn Rules"
+rule "Same Txn Rules - No > 5"
 when
     curr: CurrentTxn(pos in ('9100','01'))
     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
 				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
-				$nrOfTransactions >= 5,
-				$sumOfTransactions >= 1000)
+				$nrOfTransactions >= 5)
 then
-	System.out.println("\nRules fired for Same type txn"+curr.getCardNumber());
+	System.out.println("\nRules fired for Same type txn with no exceeding limit"+curr.getCardNumber());
+	
+end
+
+rule "Same Txn Rules - Sum > 1000"
+when
+    curr: CurrentTxn(pos in ('9100','01'))
+    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+				$nrOfTransactions : count($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
+				$list: collectList($cct);
+					$sumOfTransactions >= 1000)
+then
+	System.out.println("\nRules fired for Same type txn with sum exceeding limit"+curr.getCardNumber());
 	
 end
 
 
-rule "Same Txn Rules with txn Country"
+
+rule "Same Txn Rules with txn Country - No > 5"
 when
     curr: CurrentTxn(pos in ('9100','01'))
     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
 				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
-				$nrOfTransactions >= 5,
+				$nrOfTransactions >= 5)
+then
+	System.out.println("\nRules fired for Same type txn for the country with no of transactions exceeding limit"+curr.getCardNumber());
+	
+end
+
+
+
+rule "Same Txn Rules with txn Country - No > 5"
+when
+    curr: CurrentTxn(pos in ('9100','01'))
+    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
+				$nrOfTransactions : count($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
+				$list: collectList($cct);
 				$sumOfTransactions >= 1000)
 then
-	System.out.println("\nRules fired for Same type txn for the country"+curr.getCardNumber());
+	System.out.println("\nRules fired for Same type txn for the country with amount exceeding limit"+curr.getCardNumber());
+	
+end
+
+rule "Same Txn Rules with txn Country - avg > amount"
+when
+    curr: CurrentTxn(pos in ('9100','01'))
+    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
+				$avgOfTransactions : count($cct),
+				$sumOfTransactions : avg($cct.getTxnAmt()),
+				$list: collectList($cct);
+				$avgOfTransactions >= 500)
+then
+	System.out.println("\nRules fired for Same type txn for the country with avg exceeding limit"+curr.getCardNumber());
 	
 end
