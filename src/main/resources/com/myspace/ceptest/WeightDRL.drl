@@ -4,7 +4,557 @@ import fraud.analysis.demo.transaction.CurrentTxn;
 rule "rule1"
 
 when
-curr: CurrentTxn(txnType=="ignore")
+curr: CurrentTxn(txnType=="ignore1")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore2")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore3")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore4")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore5")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore6")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore7")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore8")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore9")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore10")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore11")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore12")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore13")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore14")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore15")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore16")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore17")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore18")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore19")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore20")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore21")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore22")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore23")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore24")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore25")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore26")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore27")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore28")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore29")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore30")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore31")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore32")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore33")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore34")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore35")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore36")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore37")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore39")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore40")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore41")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore42")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore43")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore44")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore46")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore47")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore48")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore49")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore50")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore51")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore52")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore53")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
+		when
+curr: CurrentTxn(txnType=="ignore54")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore55")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore56")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore57")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore58")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore59")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore60")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore61")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		when
+curr: CurrentTxn(txnType=="ignore62")
 then
 	 CEPFraud cepFraud = new CEPFraud();
          cepFraud.setTransactionId(curr.getTransactionId());
