@@ -1,2 +1,14 @@
 package com.myspace.ceptest;
 
+rule "rule1"
+
+when
+cu: CurrentTxn(txnType=="ignore")
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Profile Rules for ignore"+curr.getCardNumber());
+		insert(cepFraud);
+		end
+		
+		
