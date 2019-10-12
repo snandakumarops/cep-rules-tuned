@@ -4,7 +4,7 @@ import fraud.analysis.demo.transaction.CurrentTxn;
 rule "rule1"
 
 when
-cu: CurrentTxn(txnType=="ignore")
+curr: CurrentTxn(txnType=="ignore")
 then
 	 CEPFraud cepFraud = new CEPFraud();
          cepFraud.setTransactionId(curr.getTransactionId());
