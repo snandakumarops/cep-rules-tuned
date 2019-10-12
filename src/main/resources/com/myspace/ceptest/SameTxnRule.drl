@@ -1,94 +1,96 @@
 package com.myspace.ceptest;
 
+// package com.myspace.ceptest;
 
-declare Transaction @role( event )  @timestamp( txnTS ) end
 
-rule "Same Txn Rules - No > 5"
-when
-    curr: CurrentTxn(pos in ('9100','01'))
-    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
-				$nrOfTransactions : count($cct),
-				$sumOfTransactions : sum($cct.getTxnAmt()),
-				$list: collectList($cct);
-				$nrOfTransactions >= 5)
-then
-	 CEPFraud cepFraud = new CEPFraud();
-         cepFraud.setTransactionId(curr.getTransactionId());
-		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
-		insert(cepFraud);
+// declare Transaction @role( event )  @timestamp( txnTS ) end
+
+// rule "Same Txn Rules - No > 5"
+// when
+//     curr: CurrentTxn(pos in ('9100','01'))
+//     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+// 				$nrOfTransactions : count($cct),
+// 				$sumOfTransactions : sum($cct.getTxnAmt()),
+// 				$list: collectList($cct);
+// 				$nrOfTransactions >= 5)
+// then
+// 	 CEPFraud cepFraud = new CEPFraud();
+//          cepFraud.setTransactionId(curr.getTransactionId());
+// 		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+// 		insert(cepFraud);
 	
 	
-end
+// end
 
-rule "Same Txn Rules - Sum > 1000"
-when
-    curr: CurrentTxn(pos in ('9100','01'))
-    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
-				$nrOfTransactions : count($cct),
-				$sumOfTransactions : sum($cct.getTxnAmt()),
-				$list: collectList($cct);
-					$sumOfTransactions >= 1000)
-then
+// rule "Same Txn Rules - Sum > 1000"
+// when
+//     curr: CurrentTxn(pos in ('9100','01'))
+//     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+// 				$nrOfTransactions : count($cct),
+// 				$sumOfTransactions : sum($cct.getTxnAmt()),
+// 				$list: collectList($cct);
+// 					$sumOfTransactions >= 1000)
+// then
 
-	 CEPFraud cepFraud = new CEPFraud();
-         cepFraud.setTransactionId(curr.getTransactionId());
-		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
-		insert(cepFraud);
+// 	 CEPFraud cepFraud = new CEPFraud();
+//          cepFraud.setTransactionId(curr.getTransactionId());
+// 		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+// 		insert(cepFraud);
 	
-end
+// end
 
 
 
-rule "Same Txn Rules with txn Country - No > 5"
-when
-    curr: CurrentTxn(pos in ('9100','01'))
-    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
-				$nrOfTransactions : count($cct),
-				$sumOfTransactions : sum($cct.getTxnAmt()),
-				$list: collectList($cct);
-				$nrOfTransactions >= 5)
-then
+// rule "Same Txn Rules with txn Country - No > 5"
+// when
+//     curr: CurrentTxn(pos in ('9100','01'))
+//     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
+// 				$nrOfTransactions : count($cct),
+// 				$sumOfTransactions : sum($cct.getTxnAmt()),
+// 				$list: collectList($cct);
+// 				$nrOfTransactions >= 5)
+// then
 	
-	 CEPFraud cepFraud = new CEPFraud();
-         cepFraud.setTransactionId(curr.getTransactionId());
-		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
-		insert(cepFraud);
+// 	 CEPFraud cepFraud = new CEPFraud();
+//          cepFraud.setTransactionId(curr.getTransactionId());
+// 		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+// 		insert(cepFraud);
 	
-end
+// end
 
 
 
-rule "Same Txn Rules with txn Country - sum > amount"
-when
-    curr: CurrentTxn(pos in ('9100','01'))
-    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
-				$nrOfTransactions : count($cct),
-				$sumOfTransactions : sum($cct.getTxnAmt()),
-				$list: collectList($cct);
-				$sumOfTransactions >= 1000)
-then
-
-	
-	 CEPFraud cepFraud = new CEPFraud();
-         cepFraud.setTransactionId(curr.getTransactionId());
-		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
-		insert(cepFraud);
-end
-
-rule "Same Txn Rules with txn Country - avg > amount"
-when
-    curr: CurrentTxn(pos in ('9100','01'))
-    accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
-				$avgOfTransactions : count($cct),
-				$sumOfTransactions : average($cct.getTxnAmt()),
-				$list: collectList($cct);
-				$avgOfTransactions >= 500)
-then
+// rule "Same Txn Rules with txn Country - sum > amount"
+// when
+//     curr: CurrentTxn(pos in ('9100','01'))
+//     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
+// 				$nrOfTransactions : count($cct),
+// 				$sumOfTransactions : sum($cct.getTxnAmt()),
+// 				$list: collectList($cct);
+// 				$sumOfTransactions >= 1000)
+// then
 
 	
-	 CEPFraud cepFraud = new CEPFraud();
-         cepFraud.setTransactionId(curr.getTransactionId());
-		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
-		insert(cepFraud);
+// 	 CEPFraud cepFraud = new CEPFraud();
+//          cepFraud.setTransactionId(curr.getTransactionId());
+// 		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+// 		insert(cepFraud);
+// end
+
+// rule "Same Txn Rules with txn Country - avg > amount"
+// when
+//     curr: CurrentTxn(pos in ('9100','01'))
+//     accumulate ($cct: Transaction(this.pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber, this.txnCntry == curr.txnCntry) over window:time (1415m) from entry-point Reference;
+// 				$avgOfTransactions : count($cct),
+// 				$sumOfTransactions : average($cct.getTxnAmt()),
+// 				$list: collectList($cct);
+// 				$avgOfTransactions >= 500)
+// then
+
 	
-end
+// 	 CEPFraud cepFraud = new CEPFraud();
+//          cepFraud.setTransactionId(curr.getTransactionId());
+// 		cepFraud.setFraudReason("\nRules fired for Same type txn"+curr.getCardNumber());
+// 		insert(cepFraud);
+	
+// end
