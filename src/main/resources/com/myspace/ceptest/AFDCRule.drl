@@ -1,61 +1,60 @@
 package com.myspace.ceptest;
 
-// package com.myspace.ceptest;
 
 
 
-// import fraud.analysis.demo.transaction.Transaction;
-// import fraud.analysis.demo.transaction.CurrentTxn;
+import fraud.analysis.demo.transaction.Transaction;
+import fraud.analysis.demo.transaction.CurrentTxn;
 
 
-// declare Transaction @role( event )  @timestamp( txnTS ) end
+declare Transaction @role( event )  @timestamp( txnTS ) end
 
-// rule "AFDC Rules"
-// when
-//     curr: CurrentTxn(pos == "9100", txnCntry in ("US","MX","CO","BR"))
-//     accumulate ($cct: Transaction(pos=="9100", this.txnCntry in ("SG", "TH", "PH", "MY", "IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
-// 				$cnt: count($cct);
-// 				$cnt > 0)
+rule "AFDC Rules"
+when
+    curr: CurrentTxn(pos == "9100", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9100", this.txnCntry in ("SG", "TH", "PH", "MY", "IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+				$cnt: count($cct);
+				$cnt > 0)
 
-//     then
-//         CEPFraud cepFraud = new CEPFraud();
-//         cepFraud.setTransactionId(curr.getTransactionId());
-// 		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
-// 		insert(cepFraud);
+    then
+        CEPFraud cepFraud = new CEPFraud();
+        cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
+		insert(cepFraud);
 	
-// end
+end
 
 
-// rule "AFDC Rules- cntryset 2"
-// when
-//     curr: CurrentTxn(pos == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
-//     accumulate ($cct: Transaction(pos=="9100", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"),this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
-// 				$cnt: count($cct);
-// 				$cnt > 0)
+rule "AFDC Rules- cntryset 2"
+when
+    curr: CurrentTxn(pos == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9100", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"),this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+				$cnt: count($cct);
+				$cnt > 0)
 
-//     then
-//     CEPFraud cepFraud = new CEPFraud();
-//          cepFraud.setTransactionId(curr.getTransactionId());
-// 		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
-// 		insert(cepFraud);
+    then
+    CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
+		insert(cepFraud);
 	
 	
-// end
+end
 
 
-// rule "AFDC Rules- 3"
-// when
-//     curr: CurrentTxn(pos == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
-//     accumulate ($cct: Transaction(pos=="9100", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
-// 				$cnt: count($cct);
-// 				$cnt > 0)
+rule "AFDC Rules- 3"
+when
+    curr: CurrentTxn(pos == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9100", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+				$cnt: count($cct);
+				$cnt > 0)
 
-//     then
+    then
     
-// CEPFraud cepFraud = new CEPFraud();
-//       cepFraud.setTransactionId(curr.getTransactionId());
-// 		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
-// 		insert(cepFraud);
+CEPFraud cepFraud = new CEPFraud();
+      cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for AFDC Rules"+curr.getCardNumber());
+		insert(cepFraud);
 	
-// end
+end
 
