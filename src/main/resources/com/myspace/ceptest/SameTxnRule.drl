@@ -1,0 +1,1163 @@
+package com.myspace.ceptest;
+
+declare Transaction @role( event )  @timestamp( txnTS ) end
+rule '1: Same type transaction rule - number of tx 1'
+when
+  curr: CurrentTxn(pos in ('9100','01'))
+  accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 1 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 1'
+when
+  curr: CurrentTxn(pos in ('9100','01'))
+  accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 1 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 2'
+when
+  curr: CurrentTxn(pos in ('8100','02'))
+  accumulate ($cct: Transaction(pos in ('8100','02'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 2 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 2'
+when
+  curr: CurrentTxn(pos in ('8100','02'))
+  accumulate ($cct: Transaction(pos in ('8100','02'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 2 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 3'
+when
+  curr: CurrentTxn(pos in ('6100','03'))
+  accumulate ($cct: Transaction(pos in ('6100','03'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 3 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 3'
+when
+  curr: CurrentTxn(pos in ('6100','03'))
+  accumulate ($cct: Transaction(pos in ('6100','03'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 3 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 4'
+when
+  curr: CurrentTxn(pos in ('7100','04'))
+  accumulate ($cct: Transaction(pos in ('7100','04'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 4 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 4'
+when
+  curr: CurrentTxn(pos in ('7100','04'))
+  accumulate ($cct: Transaction(pos in ('7100','04'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 4 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 5'
+when
+  curr: CurrentTxn(pos in ('6100','05'))
+  accumulate ($cct: Transaction(pos in ('6100','05'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 5 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 5'
+when
+  curr: CurrentTxn(pos in ('6100','05'))
+  accumulate ($cct: Transaction(pos in ('6100','05'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 5 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 6'
+when
+  curr: CurrentTxn(pos in ('5100','06'))
+  accumulate ($cct: Transaction(pos in ('5100','06'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 6 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 6'
+when
+  curr: CurrentTxn(pos in ('5100','06'))
+  accumulate ($cct: Transaction(pos in ('5100','06'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 6 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 7'
+when
+  curr: CurrentTxn(pos in ('4100','07'))
+  accumulate ($cct: Transaction(pos in ('4100','07'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 7 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 7'
+when
+  curr: CurrentTxn(pos in ('4100','07'))
+  accumulate ($cct: Transaction(pos in ('4100','07'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 7 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 8'
+when
+  curr: CurrentTxn(pos in ('3100','08'))
+  accumulate ($cct: Transaction(pos in ('3100','08'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 8 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 8'
+when
+  curr: CurrentTxn(pos in ('3100','08'))
+  accumulate ($cct: Transaction(pos in ('3100','08'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 8 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 9'
+when
+  curr: CurrentTxn(pos in ('2100','09'))
+  accumulate ($cct: Transaction(pos in ('2100','09'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 9 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 9'
+when
+  curr: CurrentTxn(pos in ('2100','09'))
+  accumulate ($cct: Transaction(pos in ('2100','09'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 9 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 10'
+when
+  curr: CurrentTxn(pos in ('1100','10'))
+  accumulate ($cct: Transaction(pos in ('1100','10'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 10 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 10'
+when
+  curr: CurrentTxn(pos in ('1100','10'))
+  accumulate ($cct: Transaction(pos in ('1100','10'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 10 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 11'
+when
+  curr: CurrentTxn(pos in ('9100','01'))
+  accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 11 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 11'
+when
+  curr: CurrentTxn(pos in ('9100','01'))
+  accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 11 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 12'
+when
+  curr: CurrentTxn(pos in ('8100','02'))
+  accumulate ($cct: Transaction(pos in ('8100','02'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 12 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 12'
+when
+  curr: CurrentTxn(pos in ('8100','02'))
+  accumulate ($cct: Transaction(pos in ('8100','02'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 12 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 13'
+when
+  curr: CurrentTxn(pos in ('6100','03'))
+  accumulate ($cct: Transaction(pos in ('6100','03'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 13 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 13'
+when
+  curr: CurrentTxn(pos in ('6100','03'))
+  accumulate ($cct: Transaction(pos in ('6100','03'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 13 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 14'
+when
+  curr: CurrentTxn(pos in ('7100','04'))
+  accumulate ($cct: Transaction(pos in ('7100','04'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 14 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 14'
+when
+  curr: CurrentTxn(pos in ('7100','04'))
+  accumulate ($cct: Transaction(pos in ('7100','04'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 14 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 15'
+when
+  curr: CurrentTxn(pos in ('6100','05'))
+  accumulate ($cct: Transaction(pos in ('6100','05'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 15 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 15'
+when
+  curr: CurrentTxn(pos in ('6100','05'))
+  accumulate ($cct: Transaction(pos in ('6100','05'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 15 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 16'
+when
+  curr: CurrentTxn(pos in ('5100','06'))
+  accumulate ($cct: Transaction(pos in ('5100','06'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 16 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 16'
+when
+  curr: CurrentTxn(pos in ('5100','06'))
+  accumulate ($cct: Transaction(pos in ('5100','06'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 16 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 17'
+when
+  curr: CurrentTxn(pos in ('4100','07'))
+  accumulate ($cct: Transaction(pos in ('4100','07'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 17 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 17'
+when
+  curr: CurrentTxn(pos in ('4100','07'))
+  accumulate ($cct: Transaction(pos in ('4100','07'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 17 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 18'
+when
+  curr: CurrentTxn(pos in ('3100','08'))
+  accumulate ($cct: Transaction(pos in ('3100','08'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 18 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 18'
+when
+  curr: CurrentTxn(pos in ('3100','08'))
+  accumulate ($cct: Transaction(pos in ('3100','08'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 18 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 19'
+when
+  curr: CurrentTxn(pos in ('2100','09'))
+  accumulate ($cct: Transaction(pos in ('2100','09'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 19 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 19'
+when
+  curr: CurrentTxn(pos in ('2100','09'))
+  accumulate ($cct: Transaction(pos in ('2100','09'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 19 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 20'
+when
+  curr: CurrentTxn(pos in ('1100','10'))
+  accumulate ($cct: Transaction(pos in ('1100','10'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 20 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 20'
+when
+  curr: CurrentTxn(pos in ('1100','10'))
+  accumulate ($cct: Transaction(pos in ('1100','10'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 20 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 21'
+when
+  curr: CurrentTxn(pos in ('9100','01'))
+  accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 21 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 21'
+when
+  curr: CurrentTxn(pos in ('9100','01'))
+  accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 21 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 22'
+when
+  curr: CurrentTxn(pos in ('8100','02'))
+  accumulate ($cct: Transaction(pos in ('8100','02'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 22 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 22'
+when
+  curr: CurrentTxn(pos in ('8100','02'))
+  accumulate ($cct: Transaction(pos in ('8100','02'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 22 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 23'
+when
+  curr: CurrentTxn(pos in ('6100','03'))
+  accumulate ($cct: Transaction(pos in ('6100','03'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 23 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 23'
+when
+  curr: CurrentTxn(pos in ('6100','03'))
+  accumulate ($cct: Transaction(pos in ('6100','03'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 23 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 24'
+when
+  curr: CurrentTxn(pos in ('7100','04'))
+  accumulate ($cct: Transaction(pos in ('7100','04'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 24 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 24'
+when
+  curr: CurrentTxn(pos in ('7100','04'))
+  accumulate ($cct: Transaction(pos in ('7100','04'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 24 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 25'
+when
+  curr: CurrentTxn(pos in ('6100','05'))
+  accumulate ($cct: Transaction(pos in ('6100','05'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 25 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 25'
+when
+  curr: CurrentTxn(pos in ('6100','05'))
+  accumulate ($cct: Transaction(pos in ('6100','05'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 25 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 26'
+when
+  curr: CurrentTxn(pos in ('5100','06'))
+  accumulate ($cct: Transaction(pos in ('5100','06'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 26 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 26'
+when
+  curr: CurrentTxn(pos in ('5100','06'))
+  accumulate ($cct: Transaction(pos in ('5100','06'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 26 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 27'
+when
+  curr: CurrentTxn(pos in ('4100','07'))
+  accumulate ($cct: Transaction(pos in ('4100','07'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 27 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 27'
+when
+  curr: CurrentTxn(pos in ('4100','07'))
+  accumulate ($cct: Transaction(pos in ('4100','07'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 27 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 28'
+when
+  curr: CurrentTxn(pos in ('3100','08'))
+  accumulate ($cct: Transaction(pos in ('3100','08'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 28 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 28'
+when
+  curr: CurrentTxn(pos in ('3100','08'))
+  accumulate ($cct: Transaction(pos in ('3100','08'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 28 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 29'
+when
+  curr: CurrentTxn(pos in ('2100','09'))
+  accumulate ($cct: Transaction(pos in ('2100','09'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 29 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 29'
+when
+  curr: CurrentTxn(pos in ('2100','09'))
+  accumulate ($cct: Transaction(pos in ('2100','09'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 29 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 30'
+when
+  curr: CurrentTxn(pos in ('1100','10'))
+  accumulate ($cct: Transaction(pos in ('1100','10'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 5)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 30 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 30'
+when
+  curr: CurrentTxn(pos in ('1100','10'))
+  accumulate ($cct: Transaction(pos in ('1100','10'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 1000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 30 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 31'
+when
+  curr: CurrentTxn(pos in ('9100','01'))
+  accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 31 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 31'
+when
+  curr: CurrentTxn(pos in ('9100','01'))
+  accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 31 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 32'
+when
+  curr: CurrentTxn(pos in ('8100','02'))
+  accumulate ($cct: Transaction(pos in ('8100','02'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 32 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 32'
+when
+  curr: CurrentTxn(pos in ('8100','02'))
+  accumulate ($cct: Transaction(pos in ('8100','02'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 32 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 33'
+when
+  curr: CurrentTxn(pos in ('6100','03'))
+  accumulate ($cct: Transaction(pos in ('6100','03'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 33 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 33'
+when
+  curr: CurrentTxn(pos in ('6100','03'))
+  accumulate ($cct: Transaction(pos in ('6100','03'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 33 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 34'
+when
+  curr: CurrentTxn(pos in ('7100','04'))
+  accumulate ($cct: Transaction(pos in ('7100','04'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 34 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 34'
+when
+  curr: CurrentTxn(pos in ('7100','04'))
+  accumulate ($cct: Transaction(pos in ('7100','04'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 34 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 35'
+when
+  curr: CurrentTxn(pos in ('6100','05'))
+  accumulate ($cct: Transaction(pos in ('6100','05'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 35 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 35'
+when
+  curr: CurrentTxn(pos in ('6100','05'))
+  accumulate ($cct: Transaction(pos in ('6100','05'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 35 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 36'
+when
+  curr: CurrentTxn(pos in ('5100','06'))
+  accumulate ($cct: Transaction(pos in ('5100','06'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 36 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 36'
+when
+  curr: CurrentTxn(pos in ('5100','06'))
+  accumulate ($cct: Transaction(pos in ('5100','06'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 36 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 37'
+when
+  curr: CurrentTxn(pos in ('4100','07'))
+  accumulate ($cct: Transaction(pos in ('4100','07'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 37 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 37'
+when
+  curr: CurrentTxn(pos in ('4100','07'))
+  accumulate ($cct: Transaction(pos in ('4100','07'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 37 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 38'
+when
+  curr: CurrentTxn(pos in ('3100','08'))
+  accumulate ($cct: Transaction(pos in ('3100','08'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 38 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 38'
+when
+  curr: CurrentTxn(pos in ('3100','08'))
+  accumulate ($cct: Transaction(pos in ('3100','08'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 38 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 39'
+when
+  curr: CurrentTxn(pos in ('2100','09'))
+  accumulate ($cct: Transaction(pos in ('2100','09'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 39 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 39'
+when
+  curr: CurrentTxn(pos in ('2100','09'))
+  accumulate ($cct: Transaction(pos in ('2100','09'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 39 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule '1: Same type transaction rule - number of tx 40'
+when
+  curr: CurrentTxn(pos in ('1100','10'))
+  accumulate ($cct: Transaction(pos in ('1100','10'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('1: num of tx - Flagged tx based on same-tx rule 40 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule '2: Same type transaction rule - sum of tx 40'
+when
+  curr: CurrentTxn(pos in ('1100','10'))
+  accumulate ($cct: Transaction(pos in ('1100','10'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (7075m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $sumOfTransactions >= 2000)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('2: sum of tx - Flagged tx based on same-tx rule 40 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
