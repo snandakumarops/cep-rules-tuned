@@ -11,9 +11,9 @@ rule "Velocity Rule 1"
 when
   curr: CurrentTxn()
   accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
-    $nrOfTransactions : count($cct);
-    $nrOfTransactions >= 2
-   )
+    $nrOfTransactions : count($cct),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2)
   $t: Transaction(this.cardNumber == curr.cardNumber) from $list
 then
   CEPFraud cepFraud = new CEPFraud();
