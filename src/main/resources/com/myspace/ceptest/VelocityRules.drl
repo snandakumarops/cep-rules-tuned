@@ -6,7 +6,7 @@ import fraud.analysis.demo.transaction.*;
 
 
 declare Transaction @role( event )  @timestamp( txnTS ) end
-rulerule "Velocity Rule 1"
+rule "Velocity Rule 1"
 when
   curr: CurrentTxn()
   accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
