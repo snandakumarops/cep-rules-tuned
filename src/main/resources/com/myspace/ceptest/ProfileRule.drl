@@ -20,7 +20,7 @@ then
 end
 rule 'Profile rule for POS 2'
 when
-  curr: CurrentTxn(pos in ('POS'))
+  curr: CurrentTxn(pos == 'POS')
   $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
     sum($ct.getTxnAmt()))
   $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
@@ -68,7 +68,7 @@ then
 end
 rule 'Profile rule for POS 5'
 when
-  curr: CurrentTxn(pos in ('POS'))
+  curr: CurrentTxn(pos == 'POS')
   $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
     sum($ct.getTxnAmt()))
   $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
@@ -116,7 +116,7 @@ then
 end
 rule 'Profile rule for POS 8'
 when
-  curr: CurrentTxn(pos in ('POS'))
+  curr: CurrentTxn(pos == 'POS')
   $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
     sum($ct.getTxnAmt()))
   $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
@@ -164,7 +164,7 @@ then
 end
 rule 'Profile rule for POS 11'
 when
-  curr: CurrentTxn(pos in ('POS'))
+  curr: CurrentTxn(pos == 'POS')
   $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
     sum($ct.getTxnAmt()))
   $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
@@ -212,7 +212,7 @@ then
 end
 rule 'Profile rule for POS 14'
 when
-  curr: CurrentTxn(pos in ('POS'))
+  curr: CurrentTxn(pos == 'POS')
   $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
     sum($ct.getTxnAmt()))
   $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
@@ -260,7 +260,7 @@ then
 end
 rule 'Profile rule for POS 17'
 when
-  curr: CurrentTxn(pos in ('POS'))
+  curr: CurrentTxn(pos == 'POS')
   $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
     sum($ct.getTxnAmt()))
   $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
@@ -308,7 +308,7 @@ then
 end
 rule 'Profile rule for POS 20'
 when
-  curr: CurrentTxn(pos in ('POS'))
+  curr: CurrentTxn(pos == 'POS')
   $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
     sum($ct.getTxnAmt()))
   $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
