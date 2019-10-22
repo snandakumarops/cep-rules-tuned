@@ -1,8 +1,9 @@
 package com.myspace.ceptest;
+import fraud.analysis.demo.transaction.*;
 
 rule "Filler Rule 1"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE1')
+  curr: CurrentTxn(merchId=='EXCLUDE1')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -12,7 +13,7 @@ then
 end
 rule "Filler Rule 2"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE2')
+  curr: CurrentTxn(merchId=='EXCLUDE2')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -22,7 +23,7 @@ then
 end
 rule "Filler Rule 3"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE3')
+  curr: CurrentTxn(merchId=='EXCLUDE3')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -32,7 +33,7 @@ then
 end
 rule "Filler Rule 4"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE4')
+  curr: CurrentTxn(merchId=='EXCLUDE4')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -42,7 +43,7 @@ then
 end
 rule "Filler Rule 5"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE5')
+  curr: CurrentTxn(merchId=='EXCLUDE5')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -52,7 +53,7 @@ then
 end
 rule "Filler Rule 6"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE6')
+  curr: CurrentTxn(merchId=='EXCLUDE6')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -62,7 +63,7 @@ then
 end
 rule "Filler Rule 7"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE7')
+  curr: CurrentTxn(merchId=='EXCLUDE7')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -72,7 +73,7 @@ then
 end
 rule "Filler Rule 8"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE8')
+  curr: CurrentTxn(merchId=='EXCLUDE8')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -82,7 +83,7 @@ then
 end
 rule "Filler Rule 9"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE9')
+  curr: CurrentTxn(merchId=='EXCLUDE9')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -92,7 +93,7 @@ then
 end
 rule "Filler Rule 10"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE10')
+  curr: CurrentTxn(merchId=='EXCLUDE10')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -102,7 +103,7 @@ then
 end
 rule "Filler Rule 11"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE11')
+  curr: CurrentTxn(merchId=='EXCLUDE11')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -112,7 +113,7 @@ then
 end
 rule "Filler Rule 12"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE12')
+  curr: CurrentTxn(merchId=='EXCLUDE12')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -122,7 +123,7 @@ then
 end
 rule "Filler Rule 13"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE13')
+  curr: CurrentTxn(merchId=='EXCLUDE13')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -132,7 +133,7 @@ then
 end
 rule "Filler Rule 14"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE14')
+  curr: CurrentTxn(merchId=='EXCLUDE14')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -142,7 +143,7 @@ then
 end
 rule "Filler Rule 15"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE15')
+  curr: CurrentTxn(merchId=='EXCLUDE15')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -152,7 +153,7 @@ then
 end
 rule "Filler Rule 16"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE16')
+  curr: CurrentTxn(merchId=='EXCLUDE16')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -162,7 +163,7 @@ then
 end
 rule "Filler Rule 17"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE17')
+  curr: CurrentTxn(merchId=='EXCLUDE17')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -172,7 +173,7 @@ then
 end
 rule "Filler Rule 18"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE18')
+  curr: CurrentTxn(merchId=='EXCLUDE18')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -182,7 +183,7 @@ then
 end
 rule "Filler Rule 19"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE19')
+  curr: CurrentTxn(merchId=='EXCLUDE19')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -192,7 +193,7 @@ then
 end
 rule "Filler Rule 20"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE20')
+  curr: CurrentTxn(merchId=='EXCLUDE20')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -202,7 +203,7 @@ then
 end
 rule "Filler Rule 21"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE21')
+  curr: CurrentTxn(merchId=='EXCLUDE21')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -212,7 +213,7 @@ then
 end
 rule "Filler Rule 22"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE22')
+  curr: CurrentTxn(merchId=='EXCLUDE22')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -222,7 +223,7 @@ then
 end
 rule "Filler Rule 23"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE23')
+  curr: CurrentTxn(merchId=='EXCLUDE23')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -232,7 +233,7 @@ then
 end
 rule "Filler Rule 24"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE24')
+  curr: CurrentTxn(merchId=='EXCLUDE24')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -242,7 +243,7 @@ then
 end
 rule "Filler Rule 25"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE25')
+  curr: CurrentTxn(merchId=='EXCLUDE25')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -252,7 +253,7 @@ then
 end
 rule "Filler Rule 26"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE26')
+  curr: CurrentTxn(merchId=='EXCLUDE26')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -262,7 +263,7 @@ then
 end
 rule "Filler Rule 27"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE27')
+  curr: CurrentTxn(merchId=='EXCLUDE27')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -272,7 +273,7 @@ then
 end
 rule "Filler Rule 28"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE28')
+  curr: CurrentTxn(merchId=='EXCLUDE28')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -282,7 +283,7 @@ then
 end
 rule "Filler Rule 29"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE29')
+  curr: CurrentTxn(merchId=='EXCLUDE29')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -292,7 +293,7 @@ then
 end
 rule "Filler Rule 30"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE30')
+  curr: CurrentTxn(merchId=='EXCLUDE30')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -302,7 +303,7 @@ then
 end
 rule "Filler Rule 31"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE31')
+  curr: CurrentTxn(merchId=='EXCLUDE31')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -312,7 +313,7 @@ then
 end
 rule "Filler Rule 32"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE32')
+  curr: CurrentTxn(merchId=='EXCLUDE32')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -322,7 +323,7 @@ then
 end
 rule "Filler Rule 33"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE33')
+  curr: CurrentTxn(merchId=='EXCLUDE33')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -332,7 +333,7 @@ then
 end
 rule "Filler Rule 34"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE34')
+  curr: CurrentTxn(merchId=='EXCLUDE34')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -342,7 +343,7 @@ then
 end
 rule "Filler Rule 35"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE35')
+  curr: CurrentTxn(merchId=='EXCLUDE35')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -352,7 +353,7 @@ then
 end
 rule "Filler Rule 36"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE36')
+  curr: CurrentTxn(merchId=='EXCLUDE36')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -362,7 +363,7 @@ then
 end
 rule "Filler Rule 37"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE37')
+  curr: CurrentTxn(merchId=='EXCLUDE37')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -372,7 +373,7 @@ then
 end
 rule "Filler Rule 38"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE38')
+  curr: CurrentTxn(merchId=='EXCLUDE38')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -382,7 +383,7 @@ then
 end
 rule "Filler Rule 39"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE39')
+  curr: CurrentTxn(merchId=='EXCLUDE39')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -392,7 +393,7 @@ then
 end
 rule "Filler Rule 40"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE40')
+  curr: CurrentTxn(merchId=='EXCLUDE40')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -402,7 +403,7 @@ then
 end
 rule "Filler Rule 41"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE41')
+  curr: CurrentTxn(merchId=='EXCLUDE41')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -412,7 +413,7 @@ then
 end
 rule "Filler Rule 42"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE42')
+  curr: CurrentTxn(merchId=='EXCLUDE42')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -422,7 +423,7 @@ then
 end
 rule "Filler Rule 43"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE43')
+  curr: CurrentTxn(merchId=='EXCLUDE43')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -432,7 +433,7 @@ then
 end
 rule "Filler Rule 44"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE44')
+  curr: CurrentTxn(merchId=='EXCLUDE44')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -442,7 +443,7 @@ then
 end
 rule "Filler Rule 45"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE45')
+  curr: CurrentTxn(merchId=='EXCLUDE45')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -452,7 +453,7 @@ then
 end
 rule "Filler Rule 46"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE46')
+  curr: CurrentTxn(merchId=='EXCLUDE46')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -462,7 +463,7 @@ then
 end
 rule "Filler Rule 47"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE47')
+  curr: CurrentTxn(merchId=='EXCLUDE47')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -472,7 +473,7 @@ then
 end
 rule "Filler Rule 48"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE48')
+  curr: CurrentTxn(merchId=='EXCLUDE48')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -482,7 +483,7 @@ then
 end
 rule "Filler Rule 49"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE49')
+  curr: CurrentTxn(merchId=='EXCLUDE49')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -492,7 +493,7 @@ then
 end
 rule "Filler Rule 50"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE50')
+  curr: CurrentTxn(merchId=='EXCLUDE50')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -502,7 +503,7 @@ then
 end
 rule "Filler Rule 51"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE51')
+  curr: CurrentTxn(merchId=='EXCLUDE51')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -512,7 +513,7 @@ then
 end
 rule "Filler Rule 52"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE52')
+  curr: CurrentTxn(merchId=='EXCLUDE52')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -522,7 +523,7 @@ then
 end
 rule "Filler Rule 53"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE53')
+  curr: CurrentTxn(merchId=='EXCLUDE53')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -532,7 +533,7 @@ then
 end
 rule "Filler Rule 54"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE54')
+  curr: CurrentTxn(merchId=='EXCLUDE54')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -542,7 +543,7 @@ then
 end
 rule "Filler Rule 55"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE55')
+  curr: CurrentTxn(merchId=='EXCLUDE55')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -552,7 +553,7 @@ then
 end
 rule "Filler Rule 56"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE56')
+  curr: CurrentTxn(merchId=='EXCLUDE56')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -562,7 +563,7 @@ then
 end
 rule "Filler Rule 57"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE57')
+  curr: CurrentTxn(merchId=='EXCLUDE57')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -572,7 +573,7 @@ then
 end
 rule "Filler Rule 58"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE58')
+  curr: CurrentTxn(merchId=='EXCLUDE58')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -582,7 +583,7 @@ then
 end
 rule "Filler Rule 59"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE59')
+  curr: CurrentTxn(merchId=='EXCLUDE59')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -592,7 +593,7 @@ then
 end
 rule "Filler Rule 60"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE60')
+  curr: CurrentTxn(merchId=='EXCLUDE60')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -602,7 +603,7 @@ then
 end
 rule "Filler Rule 61"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE61')
+  curr: CurrentTxn(merchId=='EXCLUDE61')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -612,7 +613,7 @@ then
 end
 rule "Filler Rule 62"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE62')
+  curr: CurrentTxn(merchId=='EXCLUDE62')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -622,7 +623,7 @@ then
 end
 rule "Filler Rule 63"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE63')
+  curr: CurrentTxn(merchId=='EXCLUDE63')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -632,7 +633,7 @@ then
 end
 rule "Filler Rule 64"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE64')
+  curr: CurrentTxn(merchId=='EXCLUDE64')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -642,7 +643,7 @@ then
 end
 rule "Filler Rule 65"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE65')
+  curr: CurrentTxn(merchId=='EXCLUDE65')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -652,7 +653,7 @@ then
 end
 rule "Filler Rule 66"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE66')
+  curr: CurrentTxn(merchId=='EXCLUDE66')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -662,7 +663,7 @@ then
 end
 rule "Filler Rule 67"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE67')
+  curr: CurrentTxn(merchId=='EXCLUDE67')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -672,7 +673,7 @@ then
 end
 rule "Filler Rule 68"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE68')
+  curr: CurrentTxn(merchId=='EXCLUDE68')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -682,7 +683,7 @@ then
 end
 rule "Filler Rule 69"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE69')
+  curr: CurrentTxn(merchId=='EXCLUDE69')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -692,7 +693,7 @@ then
 end
 rule "Filler Rule 70"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE70')
+  curr: CurrentTxn(merchId=='EXCLUDE70')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -702,7 +703,7 @@ then
 end
 rule "Filler Rule 71"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE71')
+  curr: CurrentTxn(merchId=='EXCLUDE71')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -712,7 +713,7 @@ then
 end
 rule "Filler Rule 72"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE72')
+  curr: CurrentTxn(merchId=='EXCLUDE72')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -722,7 +723,7 @@ then
 end
 rule "Filler Rule 73"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE73')
+  curr: CurrentTxn(merchId=='EXCLUDE73')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -732,7 +733,7 @@ then
 end
 rule "Filler Rule 74"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE74')
+  curr: CurrentTxn(merchId=='EXCLUDE74')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -742,7 +743,7 @@ then
 end
 rule "Filler Rule 75"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE75')
+  curr: CurrentTxn(merchId=='EXCLUDE75')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -752,7 +753,7 @@ then
 end
 rule "Filler Rule 76"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE76')
+  curr: CurrentTxn(merchId=='EXCLUDE76')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -762,7 +763,7 @@ then
 end
 rule "Filler Rule 77"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE77')
+  curr: CurrentTxn(merchId=='EXCLUDE77')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -772,7 +773,7 @@ then
 end
 rule "Filler Rule 78"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE78')
+  curr: CurrentTxn(merchId=='EXCLUDE78')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -782,7 +783,7 @@ then
 end
 rule "Filler Rule 79"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE79')
+  curr: CurrentTxn(merchId=='EXCLUDE79')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -792,7 +793,7 @@ then
 end
 rule "Filler Rule 80"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE80')
+  curr: CurrentTxn(merchId=='EXCLUDE80')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -802,7 +803,7 @@ then
 end
 rule "Filler Rule 81"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE81')
+  curr: CurrentTxn(merchId=='EXCLUDE81')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -812,7 +813,7 @@ then
 end
 rule "Filler Rule 82"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE82')
+  curr: CurrentTxn(merchId=='EXCLUDE82')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -822,7 +823,7 @@ then
 end
 rule "Filler Rule 83"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE83')
+  curr: CurrentTxn(merchId=='EXCLUDE83')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -832,7 +833,7 @@ then
 end
 rule "Filler Rule 84"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE84')
+  curr: CurrentTxn(merchId=='EXCLUDE84')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -842,7 +843,7 @@ then
 end
 rule "Filler Rule 85"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE85')
+  curr: CurrentTxn(merchId=='EXCLUDE85')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -852,7 +853,7 @@ then
 end
 rule "Filler Rule 86"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE86')
+  curr: CurrentTxn(merchId=='EXCLUDE86')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -862,7 +863,7 @@ then
 end
 rule "Filler Rule 87"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE87')
+  curr: CurrentTxn(merchId=='EXCLUDE87')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -872,7 +873,7 @@ then
 end
 rule "Filler Rule 88"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE88')
+  curr: CurrentTxn(merchId=='EXCLUDE88')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -882,7 +883,7 @@ then
 end
 rule "Filler Rule 89"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE89')
+  curr: CurrentTxn(merchId=='EXCLUDE89')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -892,7 +893,7 @@ then
 end
 rule "Filler Rule 90"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE90')
+  curr: CurrentTxn(merchId=='EXCLUDE90')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -902,7 +903,7 @@ then
 end
 rule "Filler Rule 91"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE91')
+  curr: CurrentTxn(merchId=='EXCLUDE91')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -912,7 +913,7 @@ then
 end
 rule "Filler Rule 92"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE92')
+  curr: CurrentTxn(merchId=='EXCLUDE92')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -922,7 +923,7 @@ then
 end
 rule "Filler Rule 93"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE93')
+  curr: CurrentTxn(merchId=='EXCLUDE93')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -932,7 +933,7 @@ then
 end
 rule "Filler Rule 94"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE94')
+  curr: CurrentTxn(merchId=='EXCLUDE94')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -942,7 +943,7 @@ then
 end
 rule "Filler Rule 95"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE95')
+  curr: CurrentTxn(merchId=='EXCLUDE95')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -952,7 +953,7 @@ then
 end
 rule "Filler Rule 96"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE96')
+  curr: CurrentTxn(merchId=='EXCLUDE96')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -962,7 +963,7 @@ then
 end
 rule "Filler Rule 97"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE97')
+  curr: CurrentTxn(merchId=='EXCLUDE97')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -972,7 +973,7 @@ then
 end
 rule "Filler Rule 98"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE98')
+  curr: CurrentTxn(merchId=='EXCLUDE98')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -982,7 +983,7 @@ then
 end
 rule "Filler Rule 99"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE99')
+  curr: CurrentTxn(merchId=='EXCLUDE99')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -992,7 +993,7 @@ then
 end
 rule "Filler Rule 100"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE100')
+  curr: CurrentTxn(merchId=='EXCLUDE100')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -1002,7 +1003,7 @@ then
 end
 rule "Filler Rule 101"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE101')
+  curr: CurrentTxn(merchId=='EXCLUDE101')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -1012,7 +1013,7 @@ then
 end
 rule "Filler Rule 102"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE102')
+  curr: CurrentTxn(merchId=='EXCLUDE102')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -1022,7 +1023,7 @@ then
 end
 rule "Filler Rule 103"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE103')
+  curr: CurrentTxn(merchId=='EXCLUDE103')
  
 then
   CEPFraud cepFraud = new CEPFraud();
@@ -1032,7 +1033,7 @@ then
 end
 rule "Filler Rule 104"
 when
-  curr: CurrentTxn(merchantType=='EXCLUDE104')
+  curr: CurrentTxn(merchId=='EXCLUDE104')
  
 then
   CEPFraud cepFraud = new CEPFraud();
