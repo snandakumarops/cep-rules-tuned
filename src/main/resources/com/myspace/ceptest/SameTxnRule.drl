@@ -6,7 +6,7 @@ when
   curr: CurrentTxn(pos in ('9100','01'))
   accumulate ($cct: Transaction(pos in ('9100','01'), curr.merchId == this.merchId, this.txnAmt == curr.txnAmt, this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
-    $sumOfTransactions : sum($cct.getTxnAmt());)
+    $sumOfTransactions : sum($cct.getTxnAmt()))
   if ($nrOfTransactions > 5) do[count]
   if ($sumOfTransactions >= 1000) do[sum]
 then[sum]
