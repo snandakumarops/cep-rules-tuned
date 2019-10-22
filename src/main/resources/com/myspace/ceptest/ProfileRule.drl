@@ -1,0 +1,1540 @@
+package com.myspace.ceptest;
+
+import fraud.analysis.demo.transaction.Transaction;
+declare Transaction @role( event )  @timestamp( txnTS ) end
+rule 'Profile rule for ATM 1'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 1 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 2'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 2 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 3'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 3 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 4'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 4 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 5'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 5 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 6'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 6 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 7'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 7 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 8'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 8 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 9'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 9 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 10'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 10 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 11'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 11 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 12'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 12 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 13'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 13 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 14'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 14 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 15'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 15 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 16'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 16 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 17'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 17 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 18'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 18 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 19'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 19 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 20'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 20 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 21'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 21 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 22'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 22 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 23'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 23 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 24'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 24 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 25'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 25 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 26'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 26 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 27'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 27 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 28'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 28 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 29'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 29 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 30'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 30 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 31'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 31 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 32'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 32 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 33'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 33 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 34'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 34 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 35'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 35 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 36'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 36 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 37'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 37 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 38'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 38 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 39'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 39 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 40'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 40 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 41'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 41 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 42'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 42 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 43'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 43 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 44'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 44 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 45'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 45 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 46'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 46 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 47'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 47 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 48'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (1440m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 48 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 49'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 49 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 50'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 50 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 51'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 51 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 52'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 52 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 53'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 53 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 54'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 54 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 55'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 55 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 56'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 56 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 57'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 57 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 58'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 58 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 59'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 59 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 60'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 60 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 61'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 61 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 62'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 62 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 63'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 63 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 64'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 64 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 65'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 65 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 66'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 66 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 67'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 67 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 68'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 68 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 69'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 69 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 70'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 70 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 71'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 71 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 72'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 864000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 72 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 73'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 73 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 74'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 74 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 75'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 75 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 76'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 76 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 77'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 77 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 78'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 78 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 79'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 79 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 80'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 80 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 81'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 81 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 82'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 82 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 83'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 83 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 84'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (24m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 24h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 84 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 85'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 85 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 86'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 86 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 87'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 87 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 88'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 88 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 89'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 89 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 90'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 2 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 90 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 91'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 91 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 92'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 92 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 93'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.75 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 93 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for ATM 94'
+when
+  curr: CurrentTxn(pos in ('ATM'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 94 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for POS 95'
+when
+  curr: CurrentTxn(pos in ('POS'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 95 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule 'Profile rule for WEB 96'
+when
+  curr: CurrentTxn(pos in ('WEB'))
+  $addAmt: Number() from accumulate ($ct: Transaction(this.cardNumber == curr.cardNumber) over window:time (48m) from entry-point Reference;
+    sum($ct.getTxnAmt()))
+  $c: Transaction(this.cardNumber == curr.cardNumber, (new java.util.Date().getTime() - this.txnTS) > 432000000) from entry-point Reference
+
+  accumulate(t: Transaction(this before[0h, 48h] $c, this.cardNumber == curr.cardNumber) over window:time (2880m) from entry-point Reference;
+    $addAmtAvg: sum(t.getTxnAmt());
+    $addAmtAvg <= 1.5 * $addAmt)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on profile rule 96 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
