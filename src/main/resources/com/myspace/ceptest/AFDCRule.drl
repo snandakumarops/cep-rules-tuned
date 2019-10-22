@@ -1,0 +1,1510 @@
+package com.myspace.ceptest;
+
+
+
+
+import fraud.analysis.demo.transaction.Transaction;
+import fraud.analysis.demo.transaction.CurrentTxn;
+
+
+declare Transaction @role( event )  @timestamp( txnTS ) end
+rule "AFDC Rules - country set 1-1"
+when
+  curr: CurrentTxn(pos == "9100", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9100", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 1 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 1-2"
+when
+    curr: CurrentTxn(pos == "9100", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9100", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 1 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 2-1"
+when
+  curr: CurrentTxn(pos == "9101", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9101", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 2 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 2-2"
+when
+    curr: CurrentTxn(pos == "9101", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9101", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 2 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 3-1"
+when
+  curr: CurrentTxn(pos == "9102", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9102", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 3 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 3-2"
+when
+    curr: CurrentTxn(pos == "9102", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9102", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 3 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 4-1"
+when
+  curr: CurrentTxn(pos == "9103", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9103", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 4 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 4-2"
+when
+    curr: CurrentTxn(pos == "9103", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9103", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 4 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 5-1"
+when
+  curr: CurrentTxn(pos == "9104", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9104", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 5 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 5-2"
+when
+    curr: CurrentTxn(pos == "9104", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9104", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 5 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 6-1"
+when
+  curr: CurrentTxn(pos == "9105", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9105", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 6 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 6-2"
+when
+    curr: CurrentTxn(pos == "9105", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9105", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 6 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 7-1"
+when
+  curr: CurrentTxn(pos == "9106", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9106", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 7 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 7-2"
+when
+    curr: CurrentTxn(pos == "9106", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9106", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 7 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 8-1"
+when
+  curr: CurrentTxn(pos == "9107", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9107", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 8 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 8-2"
+when
+    curr: CurrentTxn(pos == "9107", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9107", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 8 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 9-1"
+when
+  curr: CurrentTxn(pos == "9108", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9108", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 9 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 9-2"
+when
+    curr: CurrentTxn(pos == "9108", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9108", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 9 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 10-1"
+when
+  curr: CurrentTxn(pos == "9109", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9109", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 10 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 10-2"
+when
+    curr: CurrentTxn(pos == "9109", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9109", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 10 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 11-1"
+when
+  curr: CurrentTxn(pos == "9110", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9110", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 11 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 11-2"
+when
+    curr: CurrentTxn(pos == "9110", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9110", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 11 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 12-1"
+when
+  curr: CurrentTxn(pos == "9111", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9111", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 12 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 12-2"
+when
+    curr: CurrentTxn(pos == "9111", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9111", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 12 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 13-1"
+when
+  curr: CurrentTxn(pos == "9112", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9112", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 13 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 13-2"
+when
+    curr: CurrentTxn(pos == "9112", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9112", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 13 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 14-1"
+when
+  curr: CurrentTxn(pos == "9113", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9113", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 14 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 14-2"
+when
+    curr: CurrentTxn(pos == "9113", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9113", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 14 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 15-1"
+when
+  curr: CurrentTxn(pos == "9114", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "9114", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 15 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 15-2"
+when
+    curr: CurrentTxn(pos == "9114", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="9114", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 15 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 16-1"
+when
+  curr: CurrentTxn(pos == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9100", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 16 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 16-2"
+when
+    curr: CurrentTxn(pos == "9100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9100", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 16 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 17-1"
+when
+  curr: CurrentTxn(pos == "9101", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9101", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 17 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 17-2"
+when
+    curr: CurrentTxn(pos == "9101", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9101", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 17 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 18-1"
+when
+  curr: CurrentTxn(pos == "9102", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9102", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 18 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 18-2"
+when
+    curr: CurrentTxn(pos == "9102", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9102", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 18 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 19-1"
+when
+  curr: CurrentTxn(pos == "9103", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9103", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 19 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 19-2"
+when
+    curr: CurrentTxn(pos == "9103", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9103", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 19 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 20-1"
+when
+  curr: CurrentTxn(pos == "9104", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9104", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 20 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 20-2"
+when
+    curr: CurrentTxn(pos == "9104", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9104", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 20 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 21-1"
+when
+  curr: CurrentTxn(pos == "9105", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9105", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 21 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 21-2"
+when
+    curr: CurrentTxn(pos == "9105", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9105", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 21 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 22-1"
+when
+  curr: CurrentTxn(pos == "9106", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9106", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 22 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 22-2"
+when
+    curr: CurrentTxn(pos == "9106", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9106", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 22 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 23-1"
+when
+  curr: CurrentTxn(pos == "9107", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9107", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 23 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 23-2"
+when
+    curr: CurrentTxn(pos == "9107", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9107", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 23 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 24-1"
+when
+  curr: CurrentTxn(pos == "9108", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9108", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 24 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 24-2"
+when
+    curr: CurrentTxn(pos == "9108", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9108", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 24 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 25-1"
+when
+  curr: CurrentTxn(pos == "9109", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9109", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 25 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 25-2"
+when
+    curr: CurrentTxn(pos == "9109", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9109", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 25 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 26-1"
+when
+  curr: CurrentTxn(pos == "9110", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9110", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 26 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 26-2"
+when
+    curr: CurrentTxn(pos == "9110", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9110", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 26 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 27-1"
+when
+  curr: CurrentTxn(pos == "9111", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9111", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 27 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 27-2"
+when
+    curr: CurrentTxn(pos == "9111", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9111", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 27 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 28-1"
+when
+  curr: CurrentTxn(pos == "9112", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9112", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 28 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 28-2"
+when
+    curr: CurrentTxn(pos == "9112", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9112", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 28 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 29-1"
+when
+  curr: CurrentTxn(pos == "9113", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9113", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 29 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 29-2"
+when
+    curr: CurrentTxn(pos == "9113", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9113", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 29 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 30-1"
+when
+  curr: CurrentTxn(pos == "9114", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "9114", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 30 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 30-2"
+when
+    curr: CurrentTxn(pos == "9114", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="9114", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (480m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 30 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 31-1"
+when
+  curr: CurrentTxn(pos == "3100", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3100", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 31 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 31-2"
+when
+    curr: CurrentTxn(pos == "3100", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3100", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 31 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 32-1"
+when
+  curr: CurrentTxn(pos == "3101", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3101", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 32 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 32-2"
+when
+    curr: CurrentTxn(pos == "3101", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3101", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 32 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 33-1"
+when
+  curr: CurrentTxn(pos == "3102", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3102", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 33 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 33-2"
+when
+    curr: CurrentTxn(pos == "3102", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3102", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 33 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 34-1"
+when
+  curr: CurrentTxn(pos == "3103", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3103", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 34 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 34-2"
+when
+    curr: CurrentTxn(pos == "3103", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3103", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 34 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 35-1"
+when
+  curr: CurrentTxn(pos == "3104", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3104", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 35 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 35-2"
+when
+    curr: CurrentTxn(pos == "3104", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3104", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 35 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 36-1"
+when
+  curr: CurrentTxn(pos == "3105", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3105", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 36 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 36-2"
+when
+    curr: CurrentTxn(pos == "3105", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3105", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 36 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 37-1"
+when
+  curr: CurrentTxn(pos == "3106", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3106", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 37 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 37-2"
+when
+    curr: CurrentTxn(pos == "3106", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3106", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 37 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 38-1"
+when
+  curr: CurrentTxn(pos == "3107", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3107", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 38 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 38-2"
+when
+    curr: CurrentTxn(pos == "3107", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3107", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 38 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 39-1"
+when
+  curr: CurrentTxn(pos == "3108", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3108", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 39 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 39-2"
+when
+    curr: CurrentTxn(pos == "3108", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3108", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 39 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 40-1"
+when
+  curr: CurrentTxn(pos == "3109", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3109", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 40 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 40-2"
+when
+    curr: CurrentTxn(pos == "3109", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3109", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 40 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 41-1"
+when
+  curr: CurrentTxn(pos == "3110", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3110", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 41 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 41-2"
+when
+    curr: CurrentTxn(pos == "3110", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3110", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 41 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 42-1"
+when
+  curr: CurrentTxn(pos == "3111", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3111", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 42 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 42-2"
+when
+    curr: CurrentTxn(pos == "3111", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3111", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 42 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 43-1"
+when
+  curr: CurrentTxn(pos == "3112", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3112", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 43 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 43-2"
+when
+    curr: CurrentTxn(pos == "3112", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3112", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 43 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 44-1"
+when
+  curr: CurrentTxn(pos == "3113", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3113", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 44 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 44-2"
+when
+    curr: CurrentTxn(pos == "3113", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3113", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 44 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 45-1"
+when
+  curr: CurrentTxn(pos == "3114", txnCntry in ("US","MX","CO","BR"))
+  accumulate ($cct: Transaction(pos == "3114", this.txnCntry in ("SG","TH","PH","MY","IN"), curr.txnCntry in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 45 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 45-2"
+when
+    curr: CurrentTxn(pos == "3114", txnCntry in ("US","MX","CO","BR"))
+    accumulate ($cct: Transaction(pos=="3114", this.txnCntry not in ("US","MX","CO","BR"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 45 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 46-1"
+when
+  curr: CurrentTxn(pos == "3100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3100", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 46 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 46-2"
+when
+    curr: CurrentTxn(pos == "3100", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3100", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 46 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 47-1"
+when
+  curr: CurrentTxn(pos == "3101", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3101", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 47 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 47-2"
+when
+    curr: CurrentTxn(pos == "3101", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3101", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 47 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 48-1"
+when
+  curr: CurrentTxn(pos == "3102", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3102", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 48 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 48-2"
+when
+    curr: CurrentTxn(pos == "3102", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3102", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 48 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 49-1"
+when
+  curr: CurrentTxn(pos == "3103", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3103", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 49 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 49-2"
+when
+    curr: CurrentTxn(pos == "3103", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3103", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 49 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 50-1"
+when
+  curr: CurrentTxn(pos == "3104", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3104", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 50 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 50-2"
+when
+    curr: CurrentTxn(pos == "3104", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3104", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 50 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 51-1"
+when
+  curr: CurrentTxn(pos == "3105", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3105", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 51 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 51-2"
+when
+    curr: CurrentTxn(pos == "3105", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3105", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 51 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 52-1"
+when
+  curr: CurrentTxn(pos == "3106", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3106", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 52 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 52-2"
+when
+    curr: CurrentTxn(pos == "3106", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3106", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 52 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 53-1"
+when
+  curr: CurrentTxn(pos == "3107", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3107", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 53 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 53-2"
+when
+    curr: CurrentTxn(pos == "3107", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3107", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 53 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 54-1"
+when
+  curr: CurrentTxn(pos == "3108", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3108", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 54 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 54-2"
+when
+    curr: CurrentTxn(pos == "3108", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3108", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 54 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 55-1"
+when
+  curr: CurrentTxn(pos == "3109", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3109", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 55 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 55-2"
+when
+    curr: CurrentTxn(pos == "3109", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3109", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 55 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 56-1"
+when
+  curr: CurrentTxn(pos == "3110", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3110", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 56 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 56-2"
+when
+    curr: CurrentTxn(pos == "3110", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3110", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 56 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 57-1"
+when
+  curr: CurrentTxn(pos == "3111", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3111", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 57 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 57-2"
+when
+    curr: CurrentTxn(pos == "3111", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3111", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 57 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 58-1"
+when
+  curr: CurrentTxn(pos == "3112", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3112", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 58 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 58-2"
+when
+    curr: CurrentTxn(pos == "3112", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3112", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 58 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 59-1"
+when
+  curr: CurrentTxn(pos == "3113", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3113", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 59 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 59-2"
+when
+    curr: CurrentTxn(pos == "3113", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3113", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 59 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
+rule "AFDC Rules - country set 60-1"
+when
+  curr: CurrentTxn(pos == "3114", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+  accumulate ($cct: Transaction(pos == "3114", this.txnCntry in ("US","MX","CO","BR"), curr.txnCntry in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+    $cnt: count($cct);
+    $cnt > 0)
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason("1: Flagged tx based on AFDC rule 60 for " + curr.getCardNumber());
+  insert(cepFraud);
+end
+
+rule "AFDC Rules - not in country set 60-2"
+when
+    curr: CurrentTxn(pos == "3114", txnCntry in ("SG", "TH", "PH", "MY", "IN"))
+    accumulate ($cct: Transaction(pos=="3114", this.txnCntry not in ("SG", "TH", "PH", "MY", "IN"), this.cardNumber == curr.cardNumber) over window:time (960m) from entry-point Reference;
+                                $cnt: count($cct);
+                                $cnt > 0)
+  then  
+    CEPFraud cepFraud = new CEPFraud();
+    cepFraud.setTransactionId(curr.getTransactionId());
+                cepFraud.setFraudReason("2: Flagged tx based on AFDC rule 60 for " + curr.getCardNumber());
+                insert(cepFraud);        
+end
