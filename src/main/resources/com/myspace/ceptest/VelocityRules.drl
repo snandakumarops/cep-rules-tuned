@@ -67,7 +67,7 @@ when
                
                 $nrOfTransactions >= 4, 
                 $sumOfTransactions >= 1000) 
-    $t: Transaction(this.cardNumber == curr.cardNumber) from $list 
+   
 then 
     CEPFraud cepFraud = new CEPFraud(); 
     cepFraud.setTransactionId(curr.getTransactionId());
@@ -92,7 +92,7 @@ when
   
     $nrOfTransactions >= 6,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -108,7 +108,7 @@ when
   
     $nrOfTransactions >= 6,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -124,7 +124,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -140,7 +140,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -156,7 +156,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -172,7 +172,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -188,7 +188,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -204,7 +204,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -220,7 +220,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -236,7 +236,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -252,7 +252,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -268,7 +268,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -284,7 +284,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -300,7 +300,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -316,7 +316,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -332,7 +332,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -348,7 +348,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -364,7 +364,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -380,7 +380,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -396,7 +396,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -412,7 +412,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -428,7 +428,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -444,7 +444,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -460,7 +460,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -476,7 +476,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -492,7 +492,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -508,7 +508,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -524,7 +524,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -540,7 +540,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -556,7 +556,7 @@ when
   
     $nrOfTransactions >= 2,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -572,7 +572,7 @@ when
   
     $nrOfTransactions >= 2,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -588,7 +588,7 @@ when
   
     $nrOfTransactions >= 4,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -604,7 +604,7 @@ when
   
     $nrOfTransactions >= 4,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -620,7 +620,7 @@ when
   
     $nrOfTransactions >= 4,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -636,7 +636,7 @@ when
   
     $nrOfTransactions >= 6,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -652,7 +652,7 @@ when
   
     $nrOfTransactions >= 6,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -668,7 +668,7 @@ when
   
     $nrOfTransactions >= 6,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -684,7 +684,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -700,7 +700,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -716,7 +716,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -732,7 +732,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -748,7 +748,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -764,7 +764,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -780,7 +780,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -796,7 +796,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -812,7 +812,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -828,7 +828,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -844,7 +844,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -860,7 +860,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -876,7 +876,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -892,7 +892,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -908,7 +908,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -924,7 +924,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -940,7 +940,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -956,7 +956,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -972,7 +972,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -988,7 +988,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1004,7 +1004,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1020,7 +1020,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1036,7 +1036,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1052,7 +1052,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1068,7 +1068,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1084,7 +1084,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1100,7 +1100,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1116,7 +1116,7 @@ when
   
     $nrOfTransactions >= 2,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1132,7 +1132,7 @@ when
   
     $nrOfTransactions >= 2,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1148,7 +1148,7 @@ when
   
     $nrOfTransactions >= 4,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1164,7 +1164,7 @@ when
   
     $nrOfTransactions >= 4,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1180,7 +1180,7 @@ when
   
     $nrOfTransactions >= 4,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1196,7 +1196,7 @@ when
   
     $nrOfTransactions >= 6,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1212,7 +1212,7 @@ when
   
     $nrOfTransactions >= 6,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1228,7 +1228,7 @@ when
   
     $nrOfTransactions >= 6,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1244,7 +1244,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1260,7 +1260,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1276,7 +1276,7 @@ when
   
     $nrOfTransactions >= 8,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1292,7 +1292,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1308,7 +1308,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1324,7 +1324,7 @@ when
   
     $nrOfTransactions >= 10,
     $sumOfTransactions >= 1000)
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1340,7 +1340,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1356,7 +1356,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1372,7 +1372,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1388,7 +1388,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1404,7 +1404,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1420,7 +1420,7 @@ when
   
     $nrOfTransactions >= 2,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1436,7 +1436,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1452,7 +1452,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1468,7 +1468,7 @@ when
   
     $nrOfTransactions >= 4,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1484,7 +1484,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1500,7 +1500,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1516,7 +1516,7 @@ when
   
     $nrOfTransactions >= 6,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1532,7 +1532,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1548,7 +1548,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1564,7 +1564,7 @@ when
   
     $nrOfTransactions >= 8,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1580,7 +1580,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1596,7 +1596,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1612,7 +1612,7 @@ when
   
     $nrOfTransactions >= 10,
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1628,7 +1628,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1644,7 +1644,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
@@ -1660,7 +1660,7 @@ when
   
     $nrOfTransactions >= 12
     )
-  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+
 then
   CEPFraud cepFraud = new CEPFraud();
   cepFraud.setTransactionId(curr.getTransactionId());
