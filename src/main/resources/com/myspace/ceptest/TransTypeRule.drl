@@ -1042,3 +1042,935 @@ then
   cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
   insert(cepFraud);
 end
+
+
+rule "Txn Type Filler Rule 105"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE105')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 106"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE106')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 107"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE107')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 108"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE108')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 109"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE109')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 110"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE110')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 111"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE111')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 112"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE112')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 113"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE113')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 114"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE114')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 115"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE115')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 116"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE116')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 117"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE117')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 118"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE118')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 119"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE119')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 120"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE120')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 121"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE121')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 122"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE122')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 123"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE123')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 124"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE124')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 125"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE125')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 126"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE126')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 127"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE127')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 128"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE128')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 129"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE129')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 130"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE130')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 131"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE131')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 132"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE132')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 133"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE133')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 134"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE134')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 135"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE135')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 136"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE136')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 137"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE137')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 138"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE138')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 139"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE139')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 140"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE140')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 141"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE141')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 142"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE142')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 143"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE143')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 144"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE144')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 145"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE145')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 146"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE146')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 147"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE147')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 148"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE148')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 149"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE149')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 150"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE150')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 151"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE151')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 152"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE152')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 153"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE153')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 154"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE154')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 155"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE155')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 156"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE156')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 157"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE157')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 158"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE158')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 159"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE159')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 160"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE160')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 161"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE161')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 162"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE162')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 163"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE163')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 164"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE164')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 165"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE165')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 166"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE166')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 167"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE167')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 168"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE168')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 169"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE169')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 170"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE170')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 171"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE171')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 172"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE172')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 173"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE173')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 174"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE174')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 175"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE175')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 176"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE176')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 177"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE177')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 178"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE178')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 179"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE179')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 180"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE180')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 181"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE181')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 182"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE182')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 183"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE183')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 184"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE184')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 185"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE185')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 186"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE186')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 187"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE187')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 188"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE188')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 189"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE189')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 190"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE190')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 191"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE191')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 192"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE192')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 193"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE193')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 194"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE194')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 195"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE195')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 196"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE196')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule "Txn Type Filler Rule 197"
+when
+  curr: CurrentTxn(txnType=='EXCLUDE197')
+ 
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
+  insert(cepFraud);
+end
