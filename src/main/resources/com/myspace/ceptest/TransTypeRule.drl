@@ -1030,6 +1030,8 @@ then
   cepFraud.setTransactionId(curr.getTransactionId());
   cepFraud.setFraudReason('excluded ' + curr.getCardNumber());
   insert(cepFraud);
+  end
+  
 rule "Txn Type Filler Rule 104"
 when
   curr: CurrentTxn(txnType=='EXCLUDE104')
