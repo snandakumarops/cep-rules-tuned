@@ -1,0 +1,1674 @@
+package com.myspace.ceptest;
+
+
+
+import fraud.analysis.demo.transaction.*;
+
+
+declare Transaction @role( event )  @timestamp( txnTS ) end
+
+rule "Velocity Rules"
+when
+    curr: CurrentTxn()
+    accumulate ($cct: Transaction(txnCntry!='SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+				$nrOfTransactions : count($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
+				$list: collectList($cct);
+				$nrOfTransactions >= 5,
+				$sumOfTransactions >= 1000)
+	$t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Velocity Rules for any other country but singapore"+curr.getCardNumber());
+		insert(cepFraud);
+	
+end
+
+rule "Velocity Rules 2"
+when
+    curr: CurrentTxn()
+    accumulate ($cct: Transaction(txnCntry!='IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+				$nrOfTransactions : count($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
+				$list: collectList($cct);
+				$nrOfTransactions >= 2,
+				$sumOfTransactions >= 1000)
+	$t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Velocity Rules for any other country but India"+curr.getCardNumber());
+		insert(cepFraud);
+	
+end
+
+rule "Velocity Rules 3"
+when
+    curr: CurrentTxn()
+    accumulate ($cct: Transaction(txnCntry!='CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+				$nrOfTransactions : count($cct),
+				$sumOfTransactions : sum($cct.getTxnAmt()),
+				$list: collectList($cct);
+				$nrOfTransactions >= 3,
+				$sumOfTransactions >= 1000)
+	$t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+	 CEPFraud cepFraud = new CEPFraud();
+         cepFraud.setTransactionId(curr.getTransactionId());
+		cepFraud.setFraudReason("\nRules fired for Velocity Rules for any other country but china"+curr.getCardNumber());
+		insert(cepFraud);
+	
+end
+
+
+rule "Velocity Rule 4" 
+when 
+    curr: CurrentTxn() 
+    accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference; 
+                $nrOfTransactions : count($cct), 
+                $sumOfTransactions : sum($cct.getTxnAmt()),
+                $list: collectList($cct); 
+                $nrOfTransactions >= 4, 
+                $sumOfTransactions >= 1000) 
+    $t: Transaction(this.cardNumber == curr.cardNumber) from $list 
+then 
+    CEPFraud cepFraud = new CEPFraud(); 
+    cepFraud.setTransactionId(curr.getTransactionId());
+    cepFraud.setFraudReason("Flagged tx based on velocity rule 4 for " + curr.getCardNumber());
+    insert(cepFraud); 
+end
+
+rule "Velocity Rule 5" 
+when curr: CurrentTxn() 
+accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+$nrOfTransactions : count($cct), $sumOfTransactions : sum($cct.getTxnAmt()), $list: collectList($cct); $nrOfTransactions >= 4, 
+$sumOfTransactions >= 1000) $t: Transaction(this.cardNumber == curr.cardNumber) from $list 
+then CEPFraud cepFraud = new CEPFraud(); cepFraud.setTransactionId(curr.getTransactionId()); cepFraud.setFraudReason('Flagged tx based on velocity rule 5 for ' + curr.getCardNumber()); insert(cepFraud); end
+
+
+rule " Velocity Rule 7"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 7 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 8"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 8 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 9"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 9 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 10"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 10 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 11"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 11 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 12"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 12 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 13"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 13 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 14"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 14 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 15"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 15 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 16"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 16 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 17"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 17 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 18"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 18 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 19"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 19 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 20"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 20 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 21"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 21 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 22"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 22 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 23"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 23 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 24"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 24 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 25"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 25 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 26"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 26 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 27"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 27 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 28"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 28 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 29"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 29 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 30"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 30 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 31"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 31 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 32"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 32 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 33"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 33 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 34"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 34 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 35"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 35 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 36"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 36 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 37"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 37 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 38"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 38 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 39"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 39 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 40"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 40 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 41"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 41 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 42"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 42 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 43"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 43 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 44"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 44 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 45"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 45 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 46"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 46 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 47"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 47 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 48"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 48 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 49"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 49 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 50"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 50 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 51"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 51 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 52"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 52 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 53"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 53 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 54"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 54 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 55"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 55 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 56"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 56 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 57"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 57 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 58"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 58 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 59"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 59 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 60"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 60 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 61"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 61 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 62"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 62 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 63"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 63 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 64"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 64 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 65"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 65 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 66"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 66 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 67"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 67 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 68"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 68 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 69"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 69 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 70"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 70 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 71"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 71 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 72"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 72 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 73"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 73 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 74"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 74 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 75"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 75 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 76"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 76 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 77"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 77 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 78"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 78 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 79"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 79 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 80"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 80 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 81"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 81 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 82"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 82 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 83"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 83 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 84"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 1000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 84 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 85"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 85 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 86"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 86 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 87"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 87 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 88"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 88 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 89"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 89 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 90"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 2,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 90 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 91"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 91 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 92"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 92 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 93"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 4,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 93 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 94"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 94 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 95"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 95 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 96"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 6,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 96 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 97"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 97 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 98"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 98 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 99"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 8,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 99 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 100"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 100 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 101"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 101 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 102"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 10,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 102 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 103"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'SG', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 103 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 104"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 104 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+rule " Velocity Rule 105"
+when
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+    $nrOfTransactions : count($cct),
+    $sumOfTransactions : sum($cct.getTxnAmt()),
+    $list: collectList($cct);
+    $nrOfTransactions >= 12,
+    $sumOfTransactions >= 2000)
+  $t: Transaction(this.cardNumber == curr.cardNumber) from $list
+then
+  CEPFraud cepFraud = new CEPFraud();
+  cepFraud.setTransactionId(curr.getTransactionId());
+  cepFraud.setFraudReason('Flagged tx based on velocity rule 105 for ' + curr.getCardNumber());
+  insert(cepFraud);
+end
+
