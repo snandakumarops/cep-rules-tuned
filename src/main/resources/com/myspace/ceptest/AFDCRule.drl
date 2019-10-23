@@ -7,7 +7,6 @@ import fraud.analysis.demo.transaction.Transaction;
 import fraud.analysis.demo.transaction.CurrentTxn;
 
 
-declare Transaction @role( event )  @timestamp( txnTS ) end
 rule "AFDC Rules - country set 1-1"
 when
   curr: CurrentTxn(pos == "9100", txnCntry in ("US","MX","CO","BR"))
