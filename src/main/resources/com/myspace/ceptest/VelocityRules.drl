@@ -3,11 +3,10 @@ package com.myspace.ceptest;
 
 
 import fraud.analysis.demo.transaction.*;
-
 rule "Velocity Rules"
 when
-    curr: CurrentTxn(null != cardNumber)
-    accumulate ($cct: Transaction(txnCntry!='SG', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    curr: CurrentTxn()
+    accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry!='SG' ) over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
 				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
@@ -24,8 +23,8 @@ end
 
 rule "Velocity Rules 2"
 when
-    curr: CurrentTxn(null != cardNumber)
-    accumulate ($cct: Transaction(txnCntry!='IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    curr: CurrentTxn()
+    accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry!='IN' ) over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
 				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
@@ -42,8 +41,8 @@ end
 
 rule "Velocity Rules 3"
 when
-    curr: CurrentTxn(null != cardNumber)
-    accumulate ($cct: Transaction(txnCntry!='CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+    curr: CurrentTxn()
+    accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry!='CN' ) over window:time (1415m) from entry-point Reference;
 				$nrOfTransactions : count($cct),
 				$sumOfTransactions : sum($cct.getTxnAmt()),
 				$list: collectList($cct);
@@ -61,8 +60,8 @@ end
 
 rule "Velocity Rule 4" 
 when 
-    curr: CurrentTxn(null != cardNumber) 
-    accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference; 
+    curr: CurrentTxn() 
+    accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference; 
                 $nrOfTransactions : count($cct), 
                 $sumOfTransactions : sum($cct.getTxnAmt()),
                 $list: collectList($cct); 
@@ -77,8 +76,8 @@ then
 end
 
 rule "Velocity Rule 5" 
-when curr: CurrentTxn(null != cardNumber) 
-accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+when curr: CurrentTxn() 
+accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
 $nrOfTransactions : count($cct), $sumOfTransactions : sum($cct.getTxnAmt()), $list: collectList($cct); $nrOfTransactions >= 4, 
 $sumOfTransactions >= 1000) $t: Transaction(this.cardNumber == curr.cardNumber) from $list 
 then CEPFraud cepFraud = new CEPFraud(); cepFraud.setTransactionId(curr.getTransactionId()); cepFraud.setFraudReason('Flagged tx based on velocity rule 5 for ' + curr.getCardNumber()); insert(cepFraud); end
@@ -86,8 +85,8 @@ then CEPFraud cepFraud = new CEPFraud(); cepFraud.setTransactionId(curr.getTrans
 
 rule " Velocity Rule 7"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -102,8 +101,8 @@ then
 end
 rule " Velocity Rule 8"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -118,8 +117,8 @@ then
 end
 rule " Velocity Rule 9"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -134,8 +133,8 @@ then
 end
 rule " Velocity Rule 10"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -150,8 +149,8 @@ then
 end
 rule " Velocity Rule 11"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -166,8 +165,8 @@ then
 end
 rule " Velocity Rule 12"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -182,8 +181,8 @@ then
 end
 rule " Velocity Rule 13"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -198,8 +197,8 @@ then
 end
 rule " Velocity Rule 14"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -214,8 +213,8 @@ then
 end
 rule " Velocity Rule 15"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -230,8 +229,8 @@ then
 end
 rule " Velocity Rule 16"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -246,8 +245,8 @@ then
 end
 rule " Velocity Rule 17"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -262,8 +261,8 @@ then
 end
 rule " Velocity Rule 18"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -278,8 +277,8 @@ then
 end
 rule " Velocity Rule 19"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -294,8 +293,8 @@ then
 end
 rule " Velocity Rule 20"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -310,8 +309,8 @@ then
 end
 rule " Velocity Rule 21"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -326,8 +325,8 @@ then
 end
 rule " Velocity Rule 22"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -342,8 +341,8 @@ then
 end
 rule " Velocity Rule 23"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -358,8 +357,8 @@ then
 end
 rule " Velocity Rule 24"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -374,8 +373,8 @@ then
 end
 rule " Velocity Rule 25"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -390,8 +389,8 @@ then
 end
 rule " Velocity Rule 26"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -406,8 +405,8 @@ then
 end
 rule " Velocity Rule 27"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -422,8 +421,8 @@ then
 end
 rule " Velocity Rule 28"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -438,8 +437,8 @@ then
 end
 rule " Velocity Rule 29"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -454,8 +453,8 @@ then
 end
 rule " Velocity Rule 30"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -470,8 +469,8 @@ then
 end
 rule " Velocity Rule 31"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -486,8 +485,8 @@ then
 end
 rule " Velocity Rule 32"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -502,8 +501,8 @@ then
 end
 rule " Velocity Rule 33"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -518,8 +517,8 @@ then
 end
 rule " Velocity Rule 34"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -534,8 +533,8 @@ then
 end
 rule " Velocity Rule 35"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (1415m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (1415m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -550,8 +549,8 @@ then
 end
 rule " Velocity Rule 36"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -566,8 +565,8 @@ then
 end
 rule " Velocity Rule 37"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -582,8 +581,8 @@ then
 end
 rule " Velocity Rule 38"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -598,8 +597,8 @@ then
 end
 rule " Velocity Rule 39"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -614,8 +613,8 @@ then
 end
 rule " Velocity Rule 40"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -630,8 +629,8 @@ then
 end
 rule " Velocity Rule 41"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -646,8 +645,8 @@ then
 end
 rule " Velocity Rule 42"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -662,8 +661,8 @@ then
 end
 rule " Velocity Rule 43"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -678,8 +677,8 @@ then
 end
 rule " Velocity Rule 44"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -694,8 +693,8 @@ then
 end
 rule " Velocity Rule 45"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -710,8 +709,8 @@ then
 end
 rule " Velocity Rule 46"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -726,8 +725,8 @@ then
 end
 rule " Velocity Rule 47"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -742,8 +741,8 @@ then
 end
 rule " Velocity Rule 48"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -758,8 +757,8 @@ then
 end
 rule " Velocity Rule 49"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -774,8 +773,8 @@ then
 end
 rule " Velocity Rule 50"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -790,8 +789,8 @@ then
 end
 rule " Velocity Rule 51"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -806,8 +805,8 @@ then
 end
 rule " Velocity Rule 52"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -822,8 +821,8 @@ then
 end
 rule " Velocity Rule 53"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -838,8 +837,8 @@ then
 end
 rule " Velocity Rule 54"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -854,8 +853,8 @@ then
 end
 rule " Velocity Rule 55"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -870,8 +869,8 @@ then
 end
 rule " Velocity Rule 56"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -886,8 +885,8 @@ then
 end
 rule " Velocity Rule 57"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -902,8 +901,8 @@ then
 end
 rule " Velocity Rule 58"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -918,8 +917,8 @@ then
 end
 rule " Velocity Rule 59"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -934,8 +933,8 @@ then
 end
 rule " Velocity Rule 60"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -950,8 +949,8 @@ then
 end
 rule " Velocity Rule 61"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -966,8 +965,8 @@ then
 end
 rule " Velocity Rule 62"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -982,8 +981,8 @@ then
 end
 rule " Velocity Rule 63"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -998,8 +997,8 @@ then
 end
 rule " Velocity Rule 64"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1014,8 +1013,8 @@ then
 end
 rule " Velocity Rule 65"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1030,8 +1029,8 @@ then
 end
 rule " Velocity Rule 66"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1046,8 +1045,8 @@ then
 end
 rule " Velocity Rule 67"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1062,8 +1061,8 @@ then
 end
 rule " Velocity Rule 68"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1078,8 +1077,8 @@ then
 end
 rule " Velocity Rule 69"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1094,8 +1093,8 @@ then
 end
 rule " Velocity Rule 70"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (2830m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (2830m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1110,8 +1109,8 @@ then
 end
 rule " Velocity Rule 71"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1126,8 +1125,8 @@ then
 end
 rule " Velocity Rule 72"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1142,8 +1141,8 @@ then
 end
 rule " Velocity Rule 73"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1158,8 +1157,8 @@ then
 end
 rule " Velocity Rule 74"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1174,8 +1173,8 @@ then
 end
 rule " Velocity Rule 75"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1190,8 +1189,8 @@ then
 end
 rule " Velocity Rule 76"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1206,8 +1205,8 @@ then
 end
 rule " Velocity Rule 77"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1222,8 +1221,8 @@ then
 end
 rule " Velocity Rule 78"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1238,8 +1237,8 @@ then
 end
 rule " Velocity Rule 79"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1254,8 +1253,8 @@ then
 end
 rule " Velocity Rule 80"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1270,8 +1269,8 @@ then
 end
 rule " Velocity Rule 81"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1286,8 +1285,8 @@ then
 end
 rule " Velocity Rule 82"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1302,8 +1301,8 @@ then
 end
 rule " Velocity Rule 83"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1318,8 +1317,8 @@ then
 end
 rule " Velocity Rule 84"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1334,8 +1333,8 @@ then
 end
 rule " Velocity Rule 85"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1350,8 +1349,8 @@ then
 end
 rule " Velocity Rule 86"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1366,8 +1365,8 @@ then
 end
 rule " Velocity Rule 87"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1382,8 +1381,8 @@ then
 end
 rule " Velocity Rule 88"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1398,8 +1397,8 @@ then
 end
 rule " Velocity Rule 89"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1414,8 +1413,8 @@ then
 end
 rule " Velocity Rule 90"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1430,8 +1429,8 @@ then
 end
 rule " Velocity Rule 91"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1446,8 +1445,8 @@ then
 end
 rule " Velocity Rule 92"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1462,8 +1461,8 @@ then
 end
 rule " Velocity Rule 93"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1478,8 +1477,8 @@ then
 end
 rule " Velocity Rule 94"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1494,8 +1493,8 @@ then
 end
 rule " Velocity Rule 95"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1510,8 +1509,8 @@ then
 end
 rule " Velocity Rule 96"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1526,8 +1525,8 @@ then
 end
 rule " Velocity Rule 97"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1542,8 +1541,8 @@ then
 end
 rule " Velocity Rule 98"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1558,8 +1557,8 @@ then
 end
 rule " Velocity Rule 99"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1574,8 +1573,8 @@ then
 end
 rule " Velocity Rule 100"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1590,8 +1589,8 @@ then
 end
 rule " Velocity Rule 101"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1606,8 +1605,8 @@ then
 end
 rule " Velocity Rule 102"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1622,8 +1621,8 @@ then
 end
 rule " Velocity Rule 103"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate (this.cardNumber == curr.cardNumber, $cct: Transaction(txnCntry != 'SG') over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'SG' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1638,8 +1637,8 @@ then
 end
 rule " Velocity Rule 104"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'IN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'IN' ) over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1654,8 +1653,8 @@ then
 end
 rule " Velocity Rule 105"
 when
-  curr: CurrentTxn(null != cardNumber)
-  accumulate ($cct: Transaction(txnCntry != 'CN', this.cardNumber == curr.cardNumber) over window:time (5660m) from entry-point Reference;
+  curr: CurrentTxn()
+  accumulate ($cct: Transaction( this.cardNumber == curr.cardNumber,txnCntry != 'CN') over window:time (5660m) from entry-point Reference;
     $nrOfTransactions : count($cct),
     $sumOfTransactions : sum($cct.getTxnAmt()),
     $list: collectList($cct);
@@ -1668,5 +1667,6 @@ then
   cepFraud.setFraudReason('Flagged tx based on velocity rule 105 for ' + curr.getCardNumber());
   insert(cepFraud);
 end
+
 
 
