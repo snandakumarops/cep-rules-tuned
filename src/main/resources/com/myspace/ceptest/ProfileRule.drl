@@ -1,7 +1,7 @@
 package com.myspace.ceptest;
 
 import fraud.analysis.demo.transaction.Transaction;
-declare Transaction @role( event )  @timestamp( txnTS ) end
+
 rule 'Profile rule for ATM 1'
 when
   curr: CurrentTxn(pos ==('ATM'))
