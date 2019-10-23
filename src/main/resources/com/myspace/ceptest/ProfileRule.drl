@@ -1,6 +1,6 @@
 package com.myspace.ceptest;
 
-import fraud.analysis.demo.transaction.Transaction;
+import fraud.analysis.demo.transaction.*;
 
 rule 'Profile rule for ATM 1'
 when
