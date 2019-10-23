@@ -5,7 +5,6 @@ package com.myspace.ceptest;
 import fraud.analysis.demo.transaction.Transaction;
 
 
-declare Transaction @role( event )  @timestamp( txnTS ) end
 rule 'Multi stage rule 1'
 when
   curr: CurrentTxn(pos in ('9100','01'))
